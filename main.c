@@ -1,72 +1,44 @@
 #include "lib.h"
 
-void	imprimir_con_efecto(const char *texto, int color)
-{
-
-	if (color == 1)
-	{	
-		while (*texto)
-		{
-			printf(RED"%c"RST, *texto);
-			fflush(stdout);
-			usleep(45000);
-			texto++;
-		}
-		printf("\n");
-	}
-	else if (color == 2)
-	{
-		while (*texto)
-		{
-			printf(W"%c"RST, *texto);
-			fflush(stdout);
-			usleep(20000);
-			texto++;
-		}
-		printf("\n");
-	}
-}
-
 int	main(void)
 {
-	const char	*texto = "	Buenos dias Alexis, todo esta listo para empezar!";
-	const char	*texto2 = "		Quieres iniciar el programa ahora?";
-	const char	*texto3 = "				PRESS:ENTER";
-	imprimir_con_efecto(texto, 1);
-	usleep(350000);
-	imprimir_con_efecto(texto2, 1);
-	usleep(350000);
-	imprimir_con_efecto(texto3, 2);
-	getchar();
-	//char	module_program;
-	//bool	ok;
+	int modulo;
+	bool	check;
+
+	presentacion_programa();
 	t_empresa *e;
 
 	e = fc_malloc(sizeof(t_empresa));
-	//ok = false;
-	init_empleados(e);
-	init_calendario(e);
-	/*while (!ok)
+	
+	check = false;
+	while (!check)
 	{
-		printf("EDICION: '1' || CONSULTA: '2'\n");
-		scanf("%c", &module_program);
+		printf("1-Inicializar programa primera vez\n");
+		printf("2-Agregar un empleado\n");
+		printf("3-Cargar horarios\n");
+		printf("4-Inicializar modulo de consulta\n");
+		scanf("%d", &modulo);
 		fflush(stdin);
-		if (module_program == '1')
+		if (modulo == 1)
 		{
-			ok = true;
-			init_empleados(e);
+			modules(e, 1);
+			check = true;
+		}	
+		else if (modulo == 2)
+		{
+			modules(e, 2);
 		}
-		else if (module_program == '2')
+		else if (modulo == 3)
 		{
-			int x;
-			leer_datos(e);
-			printf("numero de empleado\n");
-			scanf("%d", &x);
-			printf("%d", e[x].id);
-			ok = true;
+			printf("modulo 3");
+		}
+		else if (modulo == 4)
+		{
+			modules(e, 4);
 		}
 		else
-			printf(RED"Wrong parameter (1 = edicion, 2 = consulta)\n"RST);
-	*/
+			printf(RED"La respuesta debe ser 1, 2, 3 o 4\n"RST);
+	}
+	//init_calendario(e);
 	return (0);
 }

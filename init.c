@@ -1,6 +1,6 @@
 #include "lib.h"
 
-void	init_calendario(t_empleados *empleados)
+void	init_calendario(t_empresa *e)
 {
 	int fecha_compacta;
 	int	dias_por_mes[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -13,15 +13,15 @@ void	init_calendario(t_empleados *empleados)
 	dia = 1;
 	mes = 0;
 
-	empleados->calendario = malloc(sizeof(empleados->calendario) * 20);
+	e->empleados->calendario = malloc(sizeof(e->empleados->calendario) * 20);
 	while (mes < 12)
 	{
 		while (dia <= dias_por_mes[mes])
 		{
 			sprintf(fecha_comp, "%02d%02d", dia, mes + 1);
 			fecha_compacta = atoi(fecha_comp);
-			empleados->calendario->fecha[x].dia = fecha_compacta;	
-			//printf("%d\n", empleados->calendario->fecha[x].dia);
+			e->empleados->calendario->fecha[x].dia = fecha_compacta;	
+			//printf("%d\n", e->empleados->calendario->fecha[x].dia);
 			dia++;
 			x++;
 		}
@@ -30,50 +30,50 @@ void	init_calendario(t_empleados *empleados)
 	}
 }
 
-void	leer_datos(t_empleados *empleados)
+void	init_empleados(t_empresa *e)
 {
-	FILE *file = fopen(archivo, "rb");
-	if (file == NULL)
+	int	i;
+	int resultado;
+	int	scan_id_empleado;
+	bool	correct;
+	t_empleado *empleado;
+	
+	i = -1;
+	correct = false;
+	while (!correct)
 	{
-		printf("no se puede abrir para leer el archivo");
-		return ;
+		printf("Cantidad de empleados\n");
+		resultado = scanf("%d", &e->cantidad_empleados);
+		if (resultado == 1 && check_errors_nbr(e->cantidad_empleados) == 0)
+			correct = true;
+		else
+			printf(RED"Escribe un numero del 1 al 100\n"RST);
+		fflush(stdin);
 	}
-	int num_leido = fread(empleados, sizeof(t_empleados), 20, file);
-	if (num_leido == 0) 
-        printf("No se pudieron leer empleados del archivo o el archivo está vacío.\n");
-	fclose(file);
-}
-
-void	guardar_datos(t_empleados *empleado)
-{
-	FILE *file = fopen(archivo, "wb");
-	if (file == NULL)
+	correct = false;
+	resultado = 0;
+	e->empleados = fc_malloc(sizeof(t_empleado) * e->cantidad_empleados);
+	while (++i < e->cantidad_empleados)
 	{
-		printf("no se puede abrir para guardar los datos en el archivo");
-		return ;
+		empleado = e->empleados + i;
+		while (!correct)
+		{
+			printf("numero empleado\n");
+			resultado = scanf("%d", &scan_id_empleado);
+			if (resultado == 1 && check_errors_nbr(scan_id_empleado) == 0)
+			{
+				empleado->id = scan_id_empleado;
+				correct = true;
+			}
+			else
+				printf(RED"Escribe un numero del 1 al 100\n"RST);
+			fflush(stdin);
+		}
+		printf("nombre empleado\n");
+		fgets(empleado->nombre, sizeof(empleado->nombre), stdin);
+		empleado->empresa = e;
+		e->contador = 1;
+		correct = false;
 	}
-
-	size_t num_w = fwrite(empleado, sizeof(t_empleados), 1, file);
-	if (num_w != 1)
-		printf("no se puede esxrriitb");
-	fclose(file);
-}
-
-void	init_empleados(t_empleados *empleados)
-{
-	int	x;
-	int i = 0;
-
-	printf("Ingrese numero del empleado:\n");
-	scanf("%d", &x);
-	empleados[0].id = x;
-	fflush(stdin);
-
-	empleados[x].nombre = (char *)malloc(50 * sizeof(char));
-	printf("Ingrese nombre del empleado:\n");
-	scanf("%s", empleados[0].nombre);
-	printf("%s\n", empleados[0].nombre);
-	printf("%d\n", empleados[0].id);
-	guardar_datos(empleados);
-	return ;
+	//escribir_archivo(e);
 }

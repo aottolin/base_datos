@@ -48,7 +48,12 @@ struct	s_empresa
 };
 						   
 
+t_empresa* read_file(void);
 void	init_calendario(t_empresa *e);
+void	modules(t_empresa *e, int x);
 void	init_empleados(t_empresa *e);
-int check_errors_nbr(int nbr);
+int		check_errors_nbr(int nbr);
 void	*fc_malloc(size_t bytes);
+void	imprimir_con_efecto(const char *texto, int color);
+void	presentacion_programa(void);
+void write_file(t_empresa *e, int x);
