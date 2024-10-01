@@ -71,9 +71,9 @@ void	init_empleados(t_empresa *e)
 		}
 		printf("nombre empleado\n");
 		fgets(empleado->nombre, sizeof(empleado->nombre), stdin);
+		empleado->nombre[strcspn(empleado->nombre, "\n")] = '\0';
 		empleado->empresa = e;
 		e->contador = 1;
 		correct = false;
 	}
-	//escribir_archivo(e);
 }

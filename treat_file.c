@@ -10,27 +10,26 @@ void write_file(t_empresa *e, int x)
 	}
 	if (x == 1)
 	{	
+		int result;
 		fwrite(e, sizeof(t_empresa), 1, file);
-		fwrite(e->empleados, sizeof(t_empleado), 1, file);
+		result = fwrite(e->empleados, sizeof(t_empleado), e->cantidad_empleados, file);
+		printf("Result%d\n.\n", result);
 	}
 	printf("Archivo guardado exitosamente.\n");
 	fclose(file);
 }
 
-t_empresa* read_file(void)
+t_empresa* read_file(t_empresa *e)
 {
-	t_empresa *e_read;
-
 	FILE *file = fopen(archivo, "rb");
 	if (!file)
 	{
 		printf(RED"Error opening file to READ\n"RST);
 		return NULL;
 	}
-	e_read = fc_malloc(sizeof(t_empresa));
-	fread(e_read, sizeof(t_empresa), 1, file);
-	e_read->empleados = fc_malloc(sizeof(t_empleado));
-	fread(e_read->empleados, sizeof(t_empleado), 1, file);
+	fread(e, sizeof(t_empresa), 1, file);
+	e->empleados = fc_malloc(sizeof(t_empleado) * e->cantidad_empleados);
+	fread(e->empleados, sizeof(t_empleado), e->cantidad_empleados, file);
 	fclose(file);
-	return (e_read);
+	return (e);
 }

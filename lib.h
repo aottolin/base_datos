@@ -48,7 +48,7 @@ struct	s_empresa
 };
 						   
 
-t_empresa* read_file(void);
+t_empresa* read_file(t_empresa *e);
 void	init_calendario(t_empresa *e);
 void	modules(t_empresa *e, int x);
 void	init_empleados(t_empresa *e);

@@ -9,14 +9,19 @@ void	modules(t_empresa *e, int x)
 	}
 	if (x == 4)
 	{
-		t_empresa *datos_cargados = read_file();
+		t_empresa *datos_cargados = read_file(e);
 
+		//printf("el prog llega aqui\n");
 		if (datos_cargados != NULL)
 		{
-			printf("Nombre: %s\n", e->empleados[0].nombre);
-			printf("Nombre: %s\n", e->empleados[1].nombre);
-			printf("Nombre: %d\n", e->empleados[0].id);
-			printf("Nombre: %d\n", e->empleados[1].id);
+			int i = -1;
+
+			printf("Cantidad empleados: %d\n", e->cantidad_empleados);
+			while (++i < e->cantidad_empleados)
+			{
+				printf("Nombre: %s\n", datos_cargados->empleados[i].nombre);
+				printf("Numero: %d\n", datos_cargados->empleados[i].id);
+			}
 		}
 	}
 }

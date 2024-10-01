@@ -5,7 +5,7 @@ int	main(void)
 	int modulo;
 	bool	check;
 
-	presentacion_programa();
+//	presentacion_programa();
 	t_empresa *e;
 
 	e = fc_malloc(sizeof(t_empresa));
@@ -35,6 +35,7 @@ int	main(void)
 		else if (modulo == 4)
 		{
 			modules(e, 4);
+			check = true;
 		}
 		else
 			printf(RED"La respuesta debe ser 1, 2, 3 o 4\n"RST);
