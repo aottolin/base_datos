@@ -43,12 +43,12 @@ typedef struct	s_empleado
 struct	s_empresa
 {
 	int			cantidad_empleados;
-	int			contador;
 	t_empleado	*empleados;
 };
 						   
 
 t_empresa* read_file(t_empresa *e);
+void	init_new_employeed(t_empresa *e);
 void	init_calendario(t_empresa *e);
 void	modules(t_empresa *e, int x);
 void	init_empleados(t_empresa *e);
@@ -57,3 +57,4 @@ void	*fc_malloc(size_t bytes);
 void	imprimir_con_efecto(const char *texto, int color);
 void	presentacion_programa(void);
 void write_file(t_empresa *e, int x);
+void	contrasena(void);

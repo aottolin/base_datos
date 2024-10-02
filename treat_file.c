@@ -10,12 +10,10 @@ void write_file(t_empresa *e, int x)
 	}
 	if (x == 1)
 	{	
-		int result;
 		fwrite(e, sizeof(t_empresa), 1, file);
-		result = fwrite(e->empleados, sizeof(t_empleado), e->cantidad_empleados, file);
-		printf("Result%d\n.\n", result);
+		fwrite(e->empleados, sizeof(t_empleado), e->cantidad_empleados, file);
 	}
-	printf("Archivo guardado exitosamente.\n");
+	printf(G"File saved successfully.\n"RST);
 	fclose(file);
 }
 
@@ -28,8 +26,9 @@ t_empresa* read_file(t_empresa *e)
 		return NULL;
 	}
 	fread(e, sizeof(t_empresa), 1, file);
-	e->empleados = fc_malloc(sizeof(t_empleado) * e->cantidad_empleados);
+	e->empleados = fc_malloc(sizeof(t_empleado) * e->cantidad_empleados); // ver como funciona bien
 	fread(e->empleados, sizeof(t_empleado), e->cantidad_empleados, file);
 	fclose(file);
+	printf(G"File read successfully.\n"RST);
 	return (e);
 }

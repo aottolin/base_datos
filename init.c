@@ -30,6 +30,46 @@ void	init_calendario(t_empresa *e)
 	}
 }
 
+void	init_new_employeed(t_empresa *e)
+{
+	t_empresa *read_data;
+	t_empleado *new_employeed;
+	bool	check;
+
+	check = false;
+	read_data = read_file(e);
+	if (read_data != NULL)
+	{
+		int	i;
+
+		i = read_data->cantidad_empleados;
+		new_employeed = read_data->empleados + i;
+		while (!check)
+		{
+			int resultado;
+			int	scan_id_employeed;
+
+			printf("	Employeed NUMBER:\n");
+			resultado = scanf("%d", &scan_id_employeed);
+			if (resultado == 1 && check_errors_nbr(scan_id_employeed) == 0)
+			{
+				new_employeed->id = scan_id_employeed;
+				check = true;
+			}
+			else
+				printf(RED"Write a number from 1 to 100\n"RST);
+			fflush(stdin);
+		}
+		printf("	Employeed NAME:\n");
+		fgets(new_employeed->nombre, sizeof(new_employeed->nombre), stdin);
+		new_employeed->nombre[strcspn(new_employeed->nombre, "\n")] = '\0';
+		new_employeed->empresa = e;
+		read_data->cantidad_empleados = i + 1;
+	}
+	else
+		printf("Program cannot read the data(init_new_employeed_fc\n");
+}
+
 void	init_empleados(t_empresa *e)
 {
 	int	i;
@@ -42,12 +82,12 @@ void	init_empleados(t_empresa *e)
 	correct = false;
 	while (!correct)
 	{
-		printf("Cantidad de empleados\n");
+		printf("	Number of employees:\n");
 		resultado = scanf("%d", &e->cantidad_empleados);
 		if (resultado == 1 && check_errors_nbr(e->cantidad_empleados) == 0)
 			correct = true;
 		else
-			printf(RED"Escribe un numero del 1 al 100\n"RST);
+			printf(RED"Write a number from 1 to 100\n"RST);
 		fflush(stdin);
 	}
 	correct = false;
@@ -58,7 +98,7 @@ void	init_empleados(t_empresa *e)
 		empleado = e->empleados + i;
 		while (!correct)
 		{
-			printf("numero empleado\n");
+			printf("	Employeed NUMBER:\n");
 			resultado = scanf("%d", &scan_id_empleado);
 			if (resultado == 1 && check_errors_nbr(scan_id_empleado) == 0)
 			{
@@ -66,14 +106,13 @@ void	init_empleados(t_empresa *e)
 				correct = true;
 			}
 			else
-				printf(RED"Escribe un numero del 1 al 100\n"RST);
+				printf(RED"Write a number from 1 to 100\n"RST);
 			fflush(stdin);
 		}
-		printf("nombre empleado\n");
+		printf("	Employeed NAME:\n");
 		fgets(empleado->nombre, sizeof(empleado->nombre), stdin);
 		empleado->nombre[strcspn(empleado->nombre, "\n")] = '\0';
 		empleado->empresa = e;
-		e->contador = 1;
 		correct = false;
 	}
 }

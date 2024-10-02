@@ -4,10 +4,32 @@ void	modules(t_empresa *e, int x)
 {
 	if (x == 1)
 	{
-		init_empleados(e);
-		write_file(e, 1);
+		int	value;
+
+		value = 0;
+		printf("	(1) First time init or (2) Add new worker");
+		while (value == 0)
+		{
+			scanf("%d", &value);
+			fflush(stdin);
+		
+			if (value == 1)
+			{
+				printf(G"Init first workers\n"RST);
+				init_empleados(e);
+				write_file(e, 1);
+			}
+			else if (value == 2)
+			{
+				printf(G"	Add new worker\n"RST);
+				init_new_employeed(e);
+				write_file(e, 1);
+			}
+			else
+				printf(RED"Write 1 or 2\n");
+		}
 	}
-	if (x == 4)
+	if (x == 3)
 	{
 		t_empresa *datos_cargados = read_file(e);
 

@@ -4,8 +4,9 @@ int	main(void)
 {
 	int modulo;
 	bool	check;
-
-//	presentacion_programa();
+	
+	//presentacion_programa();
+	//contrasena();
 	t_empresa *e;
 
 	e = fc_malloc(sizeof(t_empresa));
@@ -13,10 +14,9 @@ int	main(void)
 	check = false;
 	while (!check)
 	{
-		printf("1-Inicializar programa primera vez\n");
-		printf("2-Agregar un empleado\n");
-		printf("3-Cargar horarios\n");
-		printf("4-Inicializar modulo de consulta\n");
+		printf("	(1) Init new worker  \n");
+		printf("	(2) Add schedules \n");
+		printf("	(3) Init answer module \n");
 		scanf("%d", &modulo);
 		fflush(stdin);
 		if (modulo == 1)
@@ -30,15 +30,11 @@ int	main(void)
 		}
 		else if (modulo == 3)
 		{
-			printf("modulo 3");
-		}
-		else if (modulo == 4)
-		{
-			modules(e, 4);
+			modules(e, 3);
 			check = true;
 		}
 		else
-			printf(RED"La respuesta debe ser 1, 2, 3 o 4\n"RST);
+			printf(RED"La respuesta debe ser 1, 2, 3\n"RST);
 	}
 	//init_calendario(e);
 	return (0);
