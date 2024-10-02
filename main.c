@@ -5,8 +5,8 @@ int	main(void)
 	int modulo;
 	bool	check;
 	
-	//presentacion_programa();
-	//contrasena();
+	presentacion_programa();
+	contrasena();
 	t_empresa *e;
 
 	e = fc_malloc(sizeof(t_empresa));

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <termios.h>
 
 #define RST		"\033[0m"	 //reset to default color
 #define RED		"\033[31m" //Bold red

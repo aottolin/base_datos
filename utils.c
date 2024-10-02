@@ -10,6 +10,12 @@ void	contrasena(void)
 	printf(RED"Alex, i need the password to continue..\n"RST);
 	while (a != b)
 	{
+		struct	termios	oldt, newt;
+
+		tcgetattr(STDIN_FILENO, &oldt);
+		newt = oldt;
+		newt.c_lflag &= ~(ECHO);
+		tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 		scanf("%d", &b);
 		if (b == a)
 		{
@@ -19,6 +25,7 @@ void	contrasena(void)
 		else
 			printf(RED"Wrong Password, try again or leave the program now\n"RST);
 		fflush(stdin);
+		tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 	}
 }
 
@@ -31,7 +38,7 @@ void	imprimir_con_efecto(const char *texto, int color)
 		{
 			printf(RED"%c"RST, *texto);
 			fflush(stdout);
-			usleep(25000);
+			usleep(10000);
 			texto++;
 		}
 		printf("\n");
