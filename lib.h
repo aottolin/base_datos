@@ -58,4 +58,5 @@ void	*fc_malloc(size_t bytes);
 void	imprimir_con_efecto(const char *texto, int color);
 void	presentacion_programa(void);
 void write_file(t_empresa *e, int x);
-void	contrasena(void);
+int	check_str(char *str);
+int	contrasena(void);

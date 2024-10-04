@@ -4,11 +4,13 @@ void	modules(t_empresa *e, int x)
 {
 	if (x == 1)
 	{
+		bool	check;
 		int	value;
 
 		value = 0;
-		printf("	(1) First time init or (2) Add new worker");
-		while (value == 0)
+		check = false;
+		printf("(1) First time init or (2) Add new worker\n");
+		while (!check)
 		{
 			scanf("%d", &value);
 			fflush(stdin);
@@ -18,12 +20,14 @@ void	modules(t_empresa *e, int x)
 				printf(G"Init first workers\n"RST);
 				init_empleados(e);
 				write_file(e, 1);
+				check = true;
 			}
 			else if (value == 2)
 			{
 				printf(G"	Add new worker\n"RST);
 				init_new_employeed(e);
 				write_file(e, 1);
+				check = true;
 			}
 			else
 				printf(RED"Write 1 or 2\n");

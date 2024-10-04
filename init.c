@@ -76,9 +76,11 @@ void	init_empleados(t_empresa *e)
 	int resultado;
 	int	scan_id_empleado;
 	bool	correct;
+	int	contador;
 	t_empleado *empleado;
 	
 	i = -1;
+	contador = 1;
 	correct = false;
 	while (!correct)
 	{
@@ -87,7 +89,7 @@ void	init_empleados(t_empresa *e)
 		if (resultado == 1 && check_errors_nbr(e->cantidad_empleados) == 0)
 			correct = true;
 		else
-			printf(RED"Write a number from 1 to 100\n"RST);
+			printf(RED"Write a number from 1 to 20\n"RST);
 		fflush(stdin);
 	}
 	correct = false;
@@ -98,7 +100,7 @@ void	init_empleados(t_empresa *e)
 		empleado = e->empleados + i;
 		while (!correct)
 		{
-			printf("	Employeed NUMBER:\n");
+			printf("	Employeed[%d] NUMBER:\n", contador);
 			resultado = scanf("%d", &scan_id_empleado);
 			if (resultado == 1 && check_errors_nbr(scan_id_empleado) == 0)
 			{
@@ -106,13 +108,27 @@ void	init_empleados(t_empresa *e)
 				correct = true;
 			}
 			else
-				printf(RED"Write a number from 1 to 100\n"RST);
+				printf(RED"Write a number from 1 to 20\n"RST);
 			fflush(stdin);
 		}
-		printf("	Employeed NAME:\n");
-		fgets(empleado->nombre, sizeof(empleado->nombre), stdin);
-		empleado->nombre[strcspn(empleado->nombre, "\n")] = '\0';
-		empleado->empresa = e;
 		correct = false;
+		while (!correct)
+		{
+			char str[10];
+
+			printf("	Employeed[%d] NAME:\n", contador);
+			fgets(str, sizeof(str), stdin);
+			str[strcspn(str, "\n")] = '\0';
+			if (check_str(str) == 0)
+			{
+				memcpy(empleado->nombre, str, sizeof(str));
+				correct = true;
+			}
+			else
+				printf(RED"Write valid input (char)\n"RST);
+			empleado->empresa = e;
+		}
+		correct = false;
+		contador++;
 	}
 }

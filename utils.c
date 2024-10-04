@@ -1,32 +1,41 @@
 #include "lib.h"
 
-void	contrasena(void)
+int	contrasena(void)
 {
 	int a;
 	int b;
+	int	counter;
+	int	counter2;
+	struct	termios	oldt, newt;
 
-	a = 1704;
+	a = 1111;
 	b = 0;
+	counter = 0;
+	counter2 = 2;
+	
 	printf(RED"Alex, i need the password to continue..\n"RST);
-	while (a != b)
+	tcgetattr(STDIN_FILENO, &oldt);
+	newt = oldt;
+	newt.c_lflag &= ~(ECHO);
+	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+	
+	while (counter++ < 3)
 	{
-		struct	termios	oldt, newt;
-
-		tcgetattr(STDIN_FILENO, &oldt);
-		newt = oldt;
-		newt.c_lflag &= ~(ECHO);
-		tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 		scanf("%d", &b);
 		if (b == a)
 		{
-			char *print = "ENTER THE SIMULATION\n";
+			char *print = "Password OK.. Enter the simulation\n";
 			imprimir_con_efecto(print, 3);
+			tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+			return (0);
 		}
 		else
-			printf(RED"Wrong Password, try again or leave the program now\n"RST);
+			printf(RED"Wrong Password.. try again: %d attempts left \n"RST, counter2--);
 		fflush(stdin);
-		tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 	}
+	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+	printf("3 FAILED attempts, The program will TURN OFF\n"); 
+		return -1;
 }
 
 void	imprimir_con_efecto(const char *texto, int color)
