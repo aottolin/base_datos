@@ -11,11 +11,16 @@ void	*fc_malloc(size_t bytes)
 
 int	check_idem(t_empresa *e, int value)
 {
-	if (e->empleados->id == value)
-	{
-		printf(RED"Employee number[%d] already exist\n"RST, value);
+	int	i;
+
+	i = -1;
+
+	while (++i < e->cantidad_empleados) 
+		if (e->empleados[i].id == value)
+		{
+			printf(RED"Employee number[%d] already exist\n"RST, value);
 			return (-1);
-	}
+		}
 	return 0;
 }
 

@@ -51,13 +51,16 @@ void	init_new_employeed(t_empresa *e)
 
 			printf("	Employeed NUMBER:\n");
 			resultado = scanf("%d", &scan_id_employeed);
-			if (resultado == 1 && check_errors_nbr(scan_id_employeed) == 0)
+			if (resultado == 1 && check_errors_nbr(scan_id_employeed) == 0 && check_idem(read_data, scan_id_employeed) == 0)
 			{
 				new_employeed->id = scan_id_employeed;
 				check = true;
 			}
 			else
-				printf(RED"Write a number from 1 to 100\n"RST);
+			{
+				if (resultado != 1)
+					printf(RED"Write a number from 1 to 20\n"RST);
+			}
 			fflush(stdin);
 		}
 		printf("	Employeed NAME:\n");

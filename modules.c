@@ -17,14 +17,12 @@ void	modules(t_empresa *e, int x)
 		
 			if (value == 1)
 			{
-				printf(G"Init first workers\n"RST);
 				init_empleados(e);
 				write_file(e, 1);
 				check = true;
 			}
 			else if (value == 2)
 			{
-				printf(G"	Add new worker\n"RST);
 				init_new_employeed(e);
 				write_file(e, 1);
 				check = true;
