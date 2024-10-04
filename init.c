@@ -102,13 +102,16 @@ void	init_empleados(t_empresa *e)
 		{
 			printf("	Employeed[%d] NUMBER:\n", contador);
 			resultado = scanf("%d", &scan_id_empleado);
-			if (resultado == 1 && check_errors_nbr(scan_id_empleado) == 0)
+			if (resultado == 1 && check_errors_nbr(scan_id_empleado) == 0 && check_idem(e, scan_id_empleado) == 0)
 			{
 				empleado->id = scan_id_empleado;
 				correct = true;
 			}
 			else
-				printf(RED"Write a number from 1 to 20\n"RST);
+			{
+				if (resultado != 1)
+					printf(RED"Write a number from 1 to 20\n"RST);
+			}
 			fflush(stdin);
 		}
 		correct = false;

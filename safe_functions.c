@@ -9,6 +9,16 @@ void	*fc_malloc(size_t bytes)
 	return (ret);
 }
 
+int	check_idem(t_empresa *e, int value)
+{
+	if (e->empleados->id == value)
+	{
+		printf(RED"Employee number[%d] already exist\n"RST, value);
+			return (-1);
+	}
+	return 0;
+}
+
 int	check_str(char *str)
 {
 	int	x;
@@ -27,9 +37,8 @@ int	check_str(char *str)
 
 int check_errors_nbr(int nbr)
 {
-
 	if (nbr >= 1 && nbr <= 20)
 		return 0;
-	else
-		return -1;
+	printf(RED"Write a number from 1 to 20\n"RST);
+	return -1;
 }

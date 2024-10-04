@@ -60,3 +60,4 @@ void	presentacion_programa(void);
 void write_file(t_empresa *e, int x);
 int	check_str(char *str);
 int	contrasena(void);
+int	check_idem(t_empresa *e, int value);
