@@ -13,7 +13,7 @@ void	modules(t_empresa *e, int modulee)
 		while (!check)
 		{
 			scanf("%d", &value);
-			fflush(stdin);
+			clear_input_buffer();
 		
 			if (value == 1)
 			{
@@ -35,6 +35,13 @@ void	modules(t_empresa *e, int modulee)
 				printf(RED"Write 1 or 2\n");
 		}
 	}
+
+	if (modulee == 2)
+	{
+		edit_shedules(e);
+		write_file(e, 2);
+	}
+
 	if (modulee == 3)
 	{
 		t_empresa *datos_cargados = read_file(e);
@@ -48,9 +55,10 @@ void	modules(t_empresa *e, int modulee)
 			{
 				printf("Nombre: %s\n", datos_cargados->empleados[i].nombre);
 				printf("Numero: %d\n", datos_cargados->empleados[i].id);
-				printf("Primera fecha del ano:%d\n", datos_cargados->empleados[3].calendario->fecha[0].dia);
-				printf("ultima fecha del ano:%d\n", datos_cargados->empleados[3].calendario->fecha[364].dia);
+				printf("Primera fecha del ano:%d\n", datos_cargados->empleados[i].calendario->fecha[0].dia);
+				printf("ultima fecha del ano:%d\n", datos_cargados->empleados[i].calendario->fecha[364].dia);
 			}
+			printf("hora_salida:%d\n", datos_cargados->empleados[1].calendario->fecha[364].hora_salida);
 		}
 	}
 }

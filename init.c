@@ -11,39 +11,42 @@ void	init_calendario(t_empresa *e)
 	t_empresa *read_data;
 
 	read_data = read_file(e);
-
-	x = 0;
-	dia = 1;
-	mes = 0;
-
-	while (mes < 12)
+	if (read_data != NULL)
 	{
-		while (dia <= dias_por_mes[mes])
-		{
-			sprintf(fecha_comp, "%02d%02d", dia, mes + 1);
-			fecha_compacta = atoi(fecha_comp);
-			read_data->empleados->calendario->fecha[x].dia = fecha_compacta;	
-		//	printf("%d\n", e->empleados->calendario->fecha[x].dia);
-			dia++;
-			x++;
-		}
-		mes++;
+		x = 0;
 		dia = 1;
-	}
-	int i;
-	int z;
-	
-	i = 0;
-	while (i < read_data->cantidad_empleados)
-	{
-		z = -1;
-		while (++z < 365)
+		mes = 0;
+		while (mes < 12)
 		{
-			read_data->empleados[i].calendario->fecha[z].dia = read_data->empleados->calendario->fecha[z].dia;
-			//printf("%d\n", e->empleados[i].calendario->fecha[z].dia);
+			while (dia <= dias_por_mes[mes])
+			{
+				sprintf(fecha_comp, "%02d%02d", dia, mes + 1);
+				fecha_compacta = atoi(fecha_comp);
+				read_data->empleados->calendario->fecha[x].dia = fecha_compacta;	
+			//	printf("%d\n", e->empleados->calendario->fecha[x].dia);
+				dia++;
+				x++;
+			}
+			mes++;
+			dia = 1;
 		}
-		i++;
+		int i;
+		int z;
+	
+		i = 0;
+		while (i < read_data->cantidad_empleados)
+		{
+			z = -1;
+			while (++z < 365)
+			{
+				read_data->empleados[i].calendario->fecha[z].dia = read_data->empleados->calendario->fecha[z].dia;
+				//printf("%d\n", e->empleados[i].calendario->fecha[z].dia);
+			}
+			i++;
+		}
 	}
+	else
+		printf(RED"Problem reading read_data in init_calender\n"RST);
 }
 
 void	init_new_employeed(t_empresa *e)
@@ -117,7 +120,6 @@ void	init_empleados(t_empresa *e)
 			correct = true;
 		else
 			printf(RED"Write a number from 1 to 20\n"RST);
-		fflush(stdin);
 	}
 	correct = false;
 	resultado = 0;
@@ -139,8 +141,8 @@ void	init_empleados(t_empresa *e)
 				if (resultado != 1)
 					printf(RED"Write a number from 1 to 20\n"RST);
 			}
-			fflush(stdin);
 		}
+		clear_input_buffer();
 		correct = false;
 		while (!correct)
 		{

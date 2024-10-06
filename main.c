@@ -28,6 +28,7 @@ int	main(void)
 		else if (modulo == 2)
 		{
 			modules(e, 2);
+			check = true;
 		}
 		else if (modulo == 3)
 		{

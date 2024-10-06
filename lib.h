@@ -23,13 +23,13 @@ typedef struct	s_fecha
 	int	hora_entrada;
 	int	hora_salida;
 	int	hs_extras_dia;
-	int	hs_extras_semana;
-	int	hs_extras_mes;
 }				t_fecha;
 
 typedef struct	s_calendario
 {
 	t_fecha	fecha[365];
+	int	hs_extras_semana;
+	int	hs_extras_mes;
 
 }				t_calendario;
 
@@ -61,7 +61,12 @@ int			check_errors_nbr(int nbr);
 void		*fc_malloc(size_t bytes);
 int			check_str(char *str);
 int			check_idem(t_empresa *e, int value);
+int			check_idem_2(t_empresa *e, int value);
+int			check_date(int date);
+void clear_input_buffer();
 /*utils*/
 void		imprimir_con_efecto(const char *texto, int color);
 void		presentacion_programa(void);
 int			contrasena(void);
+/*shedules*/
+void	edit_shedules(t_empresa *e);

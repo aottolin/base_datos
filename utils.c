@@ -87,3 +87,5 @@ void	presentacion_programa(void)
 	imprimir_con_efecto(texto3, 2);
 	getchar();
 }
+
+
