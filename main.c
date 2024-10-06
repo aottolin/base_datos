@@ -5,9 +5,9 @@ int	main(void)
 	int modulo;
 	bool	check;
 	
-	presentacion_programa();
-	if (contrasena() == -1)
-		return -1;
+	//presentacion_programa();
+	//if (contrasena() == -1)
+	//	return -1;
 	t_empresa *e;
 
 	e = fc_malloc(sizeof(t_empresa));
@@ -37,6 +37,5 @@ int	main(void)
 		else
 			printf(RED"Write 1, 2 or 3\n"RST);
 	}
-	//init_calendario(e);
 	return (0);
 }

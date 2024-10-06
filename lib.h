@@ -46,18 +46,22 @@ struct	s_empresa
 	int			cantidad_empleados;
 	t_empleado	*empleados;
 };
-						   
 
+/*treat_file*/
+void		write_file(t_empresa *e, int x);
 t_empresa* read_file(t_empresa *e);
-void	init_new_employeed(t_empresa *e);
-void	init_calendario(t_empresa *e);
-void	modules(t_empresa *e, int x);
-void	init_empleados(t_empresa *e);
-int		check_errors_nbr(int nbr);
-void	*fc_malloc(size_t bytes);
-void	imprimir_con_efecto(const char *texto, int color);
-void	presentacion_programa(void);
-void write_file(t_empresa *e, int x);
-int	check_str(char *str);
-int	contrasena(void);
-int	check_idem(t_empresa *e, int value);
+/*init*/
+void		init_empleados(t_empresa *e);
+void		init_new_employeed(t_empresa *e);
+void		init_calendario(t_empresa *e);
+/*modules*/
+void		modules(t_empresa *e, int modulee);
+/*safe_functions*/
+int			check_errors_nbr(int nbr);
+void		*fc_malloc(size_t bytes);
+int			check_str(char *str);
+int			check_idem(t_empresa *e, int value);
+/*utils*/
+void		imprimir_con_efecto(const char *texto, int color);
+void		presentacion_programa(void);
+int			contrasena(void);

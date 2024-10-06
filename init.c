@@ -8,25 +8,41 @@ void	init_calendario(t_empresa *e)
 	int	dia;
 	int mes;
 	char	fecha_comp[5];
+	t_empresa *read_data;
+
+	read_data = read_file(e);
 
 	x = 0;
 	dia = 1;
 	mes = 0;
 
-	e->empleados->calendario = malloc(sizeof(e->empleados->calendario) * 20);
 	while (mes < 12)
 	{
 		while (dia <= dias_por_mes[mes])
 		{
 			sprintf(fecha_comp, "%02d%02d", dia, mes + 1);
 			fecha_compacta = atoi(fecha_comp);
-			e->empleados->calendario->fecha[x].dia = fecha_compacta;	
-			//printf("%d\n", e->empleados->calendario->fecha[x].dia);
+			read_data->empleados->calendario->fecha[x].dia = fecha_compacta;	
+		//	printf("%d\n", e->empleados->calendario->fecha[x].dia);
 			dia++;
 			x++;
 		}
 		mes++;
 		dia = 1;
+	}
+	int i;
+	int z;
+	
+	i = 0;
+	while (i < read_data->cantidad_empleados)
+	{
+		z = -1;
+		while (++z < 365)
+		{
+			read_data->empleados[i].calendario->fecha[z].dia = read_data->empleados->calendario->fecha[z].dia;
+			//printf("%d\n", e->empleados[i].calendario->fecha[z].dia);
+		}
+		i++;
 	}
 }
 
@@ -41,15 +57,23 @@ void	init_new_employeed(t_empresa *e)
 	if (read_data != NULL)
 	{
 		int	i;
+		int	a;
 
 		i = read_data->cantidad_empleados;
+		a = 0;
+		printf("	Workers all ready created:\n");
+		while (a < read_data->cantidad_empleados)
+		{
+			printf("[%d]%s ", read_data->empleados[a].id, read_data->empleados[a].nombre);
+			a++;
+		}
+		printf("\n");
 		new_employeed = read_data->empleados + i;
 		while (!check)
 		{
 			int resultado;
 			int	scan_id_employeed;
-
-			printf("	Employeed NUMBER:\n");
+			printf("	\nWrite Employeed NUMBER:\n");
 			resultado = scanf("%d", &scan_id_employeed);
 			if (resultado == 1 && check_errors_nbr(scan_id_employeed) == 0 && check_idem(read_data, scan_id_employeed) == 0)
 			{

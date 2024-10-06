@@ -1,8 +1,8 @@
 #include "lib.h"
 
-void	modules(t_empresa *e, int x)
+void	modules(t_empresa *e, int modulee)
 {
-	if (x == 1)
+	if (modulee == 1)
 	{
 		bool	check;
 		int	value;
@@ -19,23 +19,26 @@ void	modules(t_empresa *e, int x)
 			{
 				init_empleados(e);
 				write_file(e, 1);
+				init_calendario(e);
+				write_file(e, 2);
 				check = true;
 			}
 			else if (value == 2)
 			{
 				init_new_employeed(e);
 				write_file(e, 1);
+				init_calendario(e);
+				write_file(e, 2);
 				check = true;
 			}
 			else
 				printf(RED"Write 1 or 2\n");
 		}
 	}
-	if (x == 3)
+	if (modulee == 3)
 	{
 		t_empresa *datos_cargados = read_file(e);
 
-		//printf("el prog llega aqui\n");
 		if (datos_cargados != NULL)
 		{
 			int i = -1;
@@ -45,6 +48,8 @@ void	modules(t_empresa *e, int x)
 			{
 				printf("Nombre: %s\n", datos_cargados->empleados[i].nombre);
 				printf("Numero: %d\n", datos_cargados->empleados[i].id);
+				printf("Primera fecha del ano:%d\n", datos_cargados->empleados[3].calendario->fecha[0].dia);
+				printf("ultima fecha del ano:%d\n", datos_cargados->empleados[3].calendario->fecha[364].dia);
 			}
 		}
 	}
