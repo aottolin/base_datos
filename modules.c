@@ -55,10 +55,13 @@ void	modules(t_empresa *e, int modulee)
 			{
 				printf("Nombre: %s\n", datos_cargados->empleados[i].nombre);
 				printf("Numero: %d\n", datos_cargados->empleados[i].id);
-				printf("Primera fecha del ano:%d\n", datos_cargados->empleados[i].calendario->fecha[0].dia);
-				printf("ultima fecha del ano:%d\n", datos_cargados->empleados[i].calendario->fecha[364].dia);
+			//	printf("Primera fecha del ano:%d\n", datos_cargados->empleados[i].calendario->fecha[0].dia);
+			//	printf("ultima fecha del ano:%d\n", datos_cargados->empleados[i].calendario->fecha[364].dia);
 			}
-			printf("hora_salida:%d\n", datos_cargados->empleados[1].calendario->fecha[364].hora_salida);
+			printf("hora_entrada:%d\n", datos_cargados->empleados[1].calendario->fecha[0].hora_entrada);
+			printf("hora_entrada:%d\n", datos_cargados->empleados[1].calendario->fecha[0].hora_salida);
+			printf("hora_entrada:%d\n", datos_cargados->empleados[1].calendario->fecha[1].hora_entrada);
+			printf("hora_entrada:%d\n", datos_cargados->empleados[1].calendario->fecha[1].hora_salida);
 		}
 	}
 }

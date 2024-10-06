@@ -23,6 +23,13 @@ int	check_idem_2(t_empresa *e, int value)
 	return -1;
 }
 
+int	check_time(int value)
+{
+	if (value >= 0 && value <= 24)
+		return (0);
+	return (-1);
+}
+
 int	check_date(int date)
 {
 	int	day;

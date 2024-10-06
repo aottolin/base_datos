@@ -63,10 +63,13 @@ int			check_str(char *str);
 int			check_idem(t_empresa *e, int value);
 int			check_idem_2(t_empresa *e, int value);
 int			check_date(int date);
-void clear_input_buffer();
+void		clear_input_buffer();
+int	check_time(int value);
 /*utils*/
 void		imprimir_con_efecto(const char *texto, int color);
 void		presentacion_programa(void);
 int			contrasena(void);
 /*shedules*/
 void	edit_shedules(t_empresa *e);
+int		date_id(int date);
+int		get_date(int day, int month);

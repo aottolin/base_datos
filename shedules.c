@@ -1,35 +1,42 @@
 #include "lib.h"
-	
-int	get_date(int day, int month)
-{
-	int date;
-	int	x;
-	int day_month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	
-	x = 0;
-	date = 0;
-	while (x < month - 1)
-		date += day_month[x++];
-	date += day - 1;
-	return (date);
-}
 
-int	date_id(int date)
+void	in_out(t_empleado *e, int day_posic)
 {
-	int	day;
-	int	month;
-	int day_month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	int	date_posicion;
+	bool	check2;
+	int	in;
+	int	out;
+	int	result;
 
-	day = date / 100;
-	month = date % 100;
-	if (month < 1 || month > 12 || day < 1 || day > day_month[month - 1])
+	check2 = false;
+	
+	while (!check2)
 	{
-		printf(RED"Wrong date input\n"RST);
-		return -1;
+		printf("	IN time:\n");
+		result = scanf("%d", &in);
+		if (result == 1 && check_time(in) == 0)
+		{
+			e->calendario->fecha[day_posic].hora_entrada = in;
+			check2 = true;
+		}
+		else
+			printf(RED"Wrong time IN input\n"RST);
+		clear_input_buffer();
 	}
-	date_posicion = get_date(day, month);
-	return (date_posicion);
+	check2 = false;
+	while (!check2)
+	{
+		result = 0;
+		printf("	OUT time:\n");
+		result = scanf("%d", &out);
+		if (result == 1 && check_time(out) == 0)
+		{
+			e->calendario->fecha[day_posic].hora_salida = out;
+			check2 = true;
+		}
+		else
+			printf(RED"Wrong time OUT input\n"RST);
+		clear_input_buffer();
+	}
 }
 
 void	shedules(t_empresa *e, int id)
@@ -40,6 +47,7 @@ void	shedules(t_empresa *e, int id)
 	int day_p;
 	bool	check;
 	int	result;
+	char	c;
 
 	i = 0;
 	date = 1702;
@@ -53,19 +61,27 @@ void	shedules(t_empresa *e, int id)
 		{
 			while (!check)
 			{
-				printf("Write date:\n");
+				printf("	Date[DDMM]:\n");
 				result = scanf("%d", &date);
 				if (result == 1 && check_date(date) == 0)
 				{
 					day_p = date_id(date);
-					printf("day_p:%d\n", day_p);
-					edit_employee->calendario->fecha[day_p].hora_salida = 10;
-					check = true;
+					//printf("day_p:%d\n", day_p);
+					in_out(edit_employee, day_p);
+					printf("Do you want yo add another date? [y-n]\n");					//edit_employee->calendario->fecha[day_p].hora_salida = 10;
+					scanf("%c", &c);
+					if (c == 'y')
+						check = false;
+					else if (c == 'n')
+						check = true;
+					else
+						printf(RED"Wrong input[y or n]\n"RST);
 				}
 				else
 				{
 					if (result != 1)
-						printf(RED"Wrong date input[DDMM]\n"RST);				}
+						printf(RED"Wrong date input[DDMM]\n"RST);		
+				}
 				clear_input_buffer();
 			}
 		}
@@ -86,7 +102,7 @@ void	edit_shedules(t_empresa *e)
 		while (i < read_info->cantidad_empleados)
 		{
 			edit_e = read_info->empleados + i;
-			printf(" [%d] %s", edit_e->id, edit_e->nombre);
+			printf(" [%d]%s", edit_e->id, edit_e->nombre);
 			i++;
 		}
 		printf("\n");
