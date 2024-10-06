@@ -61,6 +61,21 @@ int	check_idem(t_empresa *e, int value)
 	return 0;
 }
 
+int	check_contract(int value, int x)
+{
+	if (x == 1)
+	{
+		if (value >= 1 && value <= 12)
+			return (0);
+	}
+	if (x == 2)
+	{
+		if (value >= 5 && value <= 40)
+			return (0);
+	}
+	return (-1);
+}
+
 int	check_str(char *str)
 {
 	int	x;

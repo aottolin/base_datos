@@ -141,8 +141,8 @@ void	init_empleados(t_empresa *e)
 				if (resultado != 1)
 					printf(RED"Write a number from 1 to 20\n"RST);
 			}
-		}
 		clear_input_buffer();
+		}
 		correct = false;
 		while (!correct)
 		{

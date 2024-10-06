@@ -6,8 +6,8 @@ int	main(void)
 	bool	check;
 	
 	//presentacion_programa();
-	//if (contrasena() == -1)
-	//	return -1;
+	/*if (contrasena() == -1)
+		return -1;*/
 	t_empresa *e;
 
 	e = fc_malloc(sizeof(t_empresa));
@@ -19,7 +19,6 @@ int	main(void)
 		printf("	(2) Add schedules \n");
 		printf("	(3) Init answer module \n");
 		scanf("%d", &modulo);
-		fflush(stdin);
 		if (modulo == 1)
 		{
 			modules(e, 1);

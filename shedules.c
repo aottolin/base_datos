@@ -1,44 +1,5 @@
 #include "lib.h"
 
-void	in_out(t_empleado *e, int day_posic)
-{
-	bool	check2;
-	int	in;
-	int	out;
-	int	result;
-
-	check2 = false;
-	
-	while (!check2)
-	{
-		printf("	IN time:\n");
-		result = scanf("%d", &in);
-		if (result == 1 && check_time(in) == 0)
-		{
-			e->calendario->fecha[day_posic].hora_entrada = in;
-			check2 = true;
-		}
-		else
-			printf(RED"Wrong time IN input\n"RST);
-		clear_input_buffer();
-	}
-	check2 = false;
-	while (!check2)
-	{
-		result = 0;
-		printf("	OUT time:\n");
-		result = scanf("%d", &out);
-		if (result == 1 && check_time(out) == 0)
-		{
-			e->calendario->fecha[day_posic].hora_salida = out;
-			check2 = true;
-		}
-		else
-			printf(RED"Wrong time OUT input\n"RST);
-		clear_input_buffer();
-	}
-}
-
 void	shedules(t_empresa *e, int id)
 {
 	t_empleado *edit_employee;
@@ -47,7 +8,10 @@ void	shedules(t_empresa *e, int id)
 	int day_p;
 	bool	check;
 	int	result;
-	char	c;
+	int	result2;
+	int	result3;
+	int	c;
+	int		y_n;
 
 	i = 0;
 	date = 1702;
@@ -59,31 +23,47 @@ void	shedules(t_empresa *e, int id)
 			i++;
 		else
 		{
-			while (!check)
+			printf("Add contract month hours?	[1]yes - [2]no\n");
+			result3 = scanf("%d", &y_n);
+			if (result3 == 1 && y_n == 1)
 			{
-				printf("	Date[DDMM]:\n");
-				result = scanf("%d", &date);
-				if (result == 1 && check_date(date) == 0)
-				{
-					day_p = date_id(date);
-					//printf("day_p:%d\n", day_p);
-					in_out(edit_employee, day_p);
-					printf("Do you want yo add another date? [y-n]\n");					//edit_employee->calendario->fecha[day_p].hora_salida = 10;
-					scanf("%c", &c);
-					if (c == 'y')
-						check = false;
-					else if (c == 'n')
-						check = true;
-					else
-						printf(RED"Wrong input[y or n]\n"RST);
-				}
-				else
-				{
-					if (result != 1)
-						printf(RED"Wrong date input[DDMM]\n"RST);		
-				}
-				clear_input_buffer();
+				contract(edit_employee);
+				return ;
 			}
+			else if (result3 == 1 && y_n == 2)
+			{
+				while (!check)
+				{
+					printf("	Date[DDMM]:\n");
+					result = scanf("%d", &date);
+					if (result == 1 && check_date(date) == 0)
+					{
+						result2 = 0;
+						day_p = date_id(date);
+						//printf("day_p:%d\n", day_p);
+						in_out(edit_employee, day_p);
+						printf("Do you want to add another date in [%d]%s?	[1]yes-[2]no\n", edit_employee->id, edit_employee->nombre);						//edit_employee->calendario->fecha[day_p].hora_salida = 10;
+						result2 = scanf("%d", &c);
+						if (result2 == 1 && c == 1)
+							check = false;
+						else if (result2 == 1 && c == 2)
+							check = true;
+						else
+						{
+							printf(RED"Wrong input[1] or [2]\n"RST);
+								return ;
+						}
+					}
+					else
+					{
+						if (result != 1)
+							printf(RED"Wrong date input[DDMM]\n"RST);		
+					}
+					clear_input_buffer();
+				}
+			}
+			else
+				printf(RED"Wrong input[1] or [2]\n"RST);
 		}
 	}
 }
