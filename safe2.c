@@ -8,7 +8,6 @@ void	*fc_malloc(size_t bytes)
 		printf("malloc error");
 	return (ret);
 }
-
 int	check_func(t_empresa *e, int value, int m)
 {
 	if (m == 1) // check nbr;
@@ -16,12 +15,6 @@ int	check_func(t_empresa *e, int value, int m)
 		if (value >= 1 && value <= 20)
 			return 0;
 		printf(RED"Write a number from 1 to 20\n"RST);
-	}
-	else if (m == 2)
-	{
-		if (value >= 5 && value <= 40)
-			return (0);
-		printf(RED"Error input write [5]-[40]\n"RST);
 	}
 	else if (m == 3) // check idem
 	{
@@ -57,7 +50,6 @@ int	check_func(t_empresa *e, int value, int m)
 	{
 		if (value >= 1 && value <= 12)
 			return (0);
-		printf(RED"Error input write [1]-[12]\n"RST);
 	}
 	return (-1);
 }
@@ -76,26 +68,4 @@ int	check_date(int date)
 		return -1;
 	}
 	return (0);
-} 
-
-int	check_str(char *str)
-{
-	int	x;
-	int	size;
-
-	x = 0;
-	size = strlen(str);
-
-	while (str[x] >= 'a' && str[x] <= 'z')
-		x++;
-	if (size == x)
-		return 0;
-	else
-		return -1;
-}
-
-void clear_input_buffer()
-{
-	int c;
-	while ((c = getchar()) != '\n' && c != EOF)			{ }
 }

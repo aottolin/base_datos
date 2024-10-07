@@ -1,54 +1,5 @@
 #include "lib.h"
 
-void	init_calendario(t_empresa *e)
-{
-	int fecha_compacta;
-	int	dias_por_mes[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	int	x;
-	int	dia;
-	int mes;
-	char	fecha_comp[5];
-	t_empresa *read_data;
-
-	read_data = read_file(e);
-	if (read_data != NULL)
-	{
-		x = 0;
-		dia = 1;
-		mes = 0;
-		while (mes < 12)
-		{
-			while (dia <= dias_por_mes[mes])
-			{
-				sprintf(fecha_comp, "%02d%02d", dia, mes + 1);
-				fecha_compacta = atoi(fecha_comp);
-				read_data->empleados->calendario->fecha[x].dia = fecha_compacta;	
-			//	printf("%d\n", e->empleados->calendario->fecha[x].dia);
-				dia++;
-				x++;
-			}
-			mes++;
-			dia = 1;
-		}
-		int i;
-		int z;
-	
-		i = 0;
-		while (i < read_data->cantidad_empleados)
-		{
-			z = -1;
-			while (++z < 365)
-			{
-				read_data->empleados[i].calendario->fecha[z].dia = read_data->empleados->calendario->fecha[z].dia;
-				//printf("%d\n", e->empleados[i].calendario->fecha[z].dia);
-			}
-			i++;
-		}
-	}
-	else
-		printf(RED"Problem reading read_data in init_calender\n"RST);
-}
-
 void	init_new_employeed(t_empresa *e)
 {
 	t_empresa *read_data;
@@ -76,19 +27,15 @@ void	init_new_employeed(t_empresa *e)
 		{
 			int resultado;
 			int	scan_id_employeed;
-			printf("	\nWrite Employeed NUMBER:\n");
-			resultado = scanf("%d", &scan_id_employeed);
-			if (resultado == 1 && check_errors_nbr(scan_id_employeed) == 0 && check_idem(read_data, scan_id_employeed) == 0)
+			printf("	Write Employeed NUMBER:\n");
+			if ((resultado = scanf("%d", &scan_id_employeed)) == 1 && check_func(read_data, scan_id_employeed, 1) == 0 && check_func(read_data, scan_id_employeed, 3) == 0)
 			{
 				new_employeed->id = scan_id_employeed;
 				check = true;
 			}
-			else
-			{
-				if (resultado != 1)
-					printf(RED"Write a number from 1 to 20\n"RST);
-			}
-			fflush(stdin);
+			else if (resultado != 1)
+				printf(RED"Write a number from 1 to 20\n"RST);
+			clear_input_buffer();
 		}
 		printf("	Employeed NAME:\n");
 		fgets(new_employeed->nombre, sizeof(new_employeed->nombre), stdin);
@@ -112,14 +59,15 @@ void	init_empleados(t_empresa *e)
 	i = -1;
 	contador = 1;
 	correct = false;
+	resultado = 0;
 	while (!correct)
 	{
 		printf("	Number of employees:\n");
-		resultado = scanf("%d", &e->cantidad_empleados);
-		if (resultado == 1 && check_errors_nbr(e->cantidad_empleados) == 0)
-			correct = true;
-		else
+		if ((resultado = scanf("%d", &e->cantidad_empleados)) == 1 && check_func(e, e->cantidad_empleados, 1) == 0)
+			correct = true;	
+		else if (resultado != 1)
 			printf(RED"Write a number from 1 to 20\n"RST);
+		clear_input_buffer();
 	}
 	correct = false;
 	resultado = 0;
@@ -130,18 +78,14 @@ void	init_empleados(t_empresa *e)
 		while (!correct)
 		{
 			printf("	Employeed[%d] NUMBER:\n", contador);
-			resultado = scanf("%d", &scan_id_empleado);
-			if (resultado == 1 && check_errors_nbr(scan_id_empleado) == 0 && check_idem(e, scan_id_empleado) == 0)
+			if ((resultado = scanf("%d", &scan_id_empleado)) == 1 && check_func(e, scan_id_empleado, 1) == 0 && check_func(e, scan_id_empleado, 3) == 0)
 			{
 				empleado->id = scan_id_empleado;
 				correct = true;
 			}
-			else
-			{
-				if (resultado != 1)
+			else if (resultado != 1)
 					printf(RED"Write a number from 1 to 20\n"RST);
-			}
-		clear_input_buffer();
+			clear_input_buffer();
 		}
 		correct = false;
 		while (!correct)

@@ -64,15 +64,11 @@ void		init_calendario(t_empresa *e);
 /*modules*/
 void		modules(t_empresa *e, int modulee);
 /*safe_functions*/
-int			check_errors_nbr(int nbr);
 void		*fc_malloc(size_t bytes);
 int			check_str(char *str);
-int			check_idem(t_empresa *e, int value);
-int			check_idem_2(t_empresa *e, int value);
 int			check_date(int date);
 void		clear_input_buffer();
-int	check_contract(int value, int x);
-int	check_time(int value);
+int	check_func(t_empresa *e, int value, int m);
 /*utils*/
 void		imprimir_con_efecto(const char *texto, int color);
 void		presentacion_programa(void);

@@ -32,7 +32,7 @@ void	modules(t_empresa *e, int modulee)
 				check = true;
 			}
 			else
-				printf(RED"Write 1 or 2\n");
+				printf(RED"Write 1 or 2\n"RST);
 		}
 	}
 
