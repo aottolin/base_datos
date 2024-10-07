@@ -9,9 +9,7 @@ void	shedules(t_empresa *e, int id)
 	bool	check;
 	int	result;
 	int	result2;
-	int	result3;
 	int	c;
-	int		y_n;
 
 	i = 0;
 	date = 1702;
@@ -23,45 +21,31 @@ void	shedules(t_empresa *e, int id)
 			i++;
 		else
 		{
-			printf("Add contract month hours?	[1]yes - [2]no\n");
-			if ((result3 = scanf("%d", &y_n)) == 1 && y_n == 1)
+			while (!check)
 			{
-				contract(edit_employee);
-				return ;
-			}
-			else if (result3 == 1 && y_n == 2)
-			{
-				while (!check)
+				printf("	Date[DDMM]:\n");
+				if ((result = scanf("%d", &date) == 1) && check_date(date) == 0)
 				{
-					printf("	Date[DDMM]:\n");
-					if ((result = scanf("%d", &date) == 1) && check_date(date) == 0)
+					result2 = 0;
+					day_p = date_id(date);
+					//printf("day_p:%d\n", day_p);
+					in_out(edit_employee, day_p);
+					printf("Do you want to add another date in [%d]%s?	[1]yes-[2]no\n", edit_employee->id, edit_employee->nombre);						//edit_employee->calendario->fecha[day_p].hora_salida = 10;
+					if ((result2 = scanf("%d", &c) == 1) && c == 1)
+						check = false;
+					else if (result2 == 1 && c == 2)
+						check = true;
+					else
 					{
-						result2 = 0;
-						day_p = date_id(date);
-						//printf("day_p:%d\n", day_p);
-						in_out(edit_employee, day_p);
-						printf("Do you want to add another date in [%d]%s?	[1]yes-[2]no\n", edit_employee->id, edit_employee->nombre);						//edit_employee->calendario->fecha[day_p].hora_salida = 10;
-						if ((result2 = scanf("%d", &c) == 1) && c == 1)
-							check = false;
-						else if (result2 == 1 && c == 2)
-							check = true;
-						else
-						{
-							printf(RED"Wrong input[1] or [2]\n"RST);
-								return ;
-						}
-					}
-					else if (result != 1)
-					{
-						printf(RED"Wrong date input[DDMM]\n"RST);		
-						clear_input_buffer();
+						printf(RED"Wrong input[1] or [2]\n"RST);
+							return ;
 					}
 				}
-			}
-			else
-			{
-				printf(RED"Wrong input[1] or [2]\n"RST);
-				clear_input_buffer();
+				else if (result != 1)
+				{
+					printf(RED"Wrong date input[DDMM]\n"RST);		
+					clear_input_buffer();
+				}
 			}
 		}
 	}

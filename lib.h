@@ -68,15 +68,19 @@ void		*fc_malloc(size_t bytes);
 int			check_str(char *str);
 int			check_date(int date);
 void		clear_input_buffer();
-int	check_func(t_empresa *e, int value, int m);
+int			check_func(t_empresa *e, int value, int m);
 /*utils*/
 void		imprimir_con_efecto(const char *texto, int color);
 void		presentacion_programa(void);
 int			contrasena(void);
 /*shedules*/
 void	edit_shedules(t_empresa *e);
-/*shedules utils*/
+/*init_calender*/
 int		date_id(int date);
 int		get_date(int day, int month);
+/*shedules utils*/
 void	contract(t_empleado *e);
 void	in_out(t_empleado *e, int day_posic);
+/*ask_mode*/
+void	consult_worker(t_empresa *e);
+void	consult_in_out(t_empresa *e);

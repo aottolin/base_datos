@@ -81,5 +81,6 @@ void	in_out(t_empleado *e, int day_posic)
 			printf(RED"Wrong time [OUT] input\n"RST);
 		clear_input_buffer();
 	}
+	e->calendario->fecha[day_posic].hs_extras_dia = out - in;
 }
 

@@ -18,6 +18,7 @@ int	main(void)
 		printf("	(1) Init new worker  \n");
 		printf("	(2) Add schedules \n");
 		printf("	(3) Init answer module \n");
+		printf("	(4) Add contract hours \n");
 		scanf("%d", &modulo);
 		if (modulo == 1)
 		{
@@ -32,6 +33,11 @@ int	main(void)
 		else if (modulo == 3)
 		{
 			modules(e, 3);
+			check = true;
+		}
+		else if (modulo == 4)
+		{
+			modules(e, 4);
 			check = true;
 		}
 		else
