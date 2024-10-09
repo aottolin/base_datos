@@ -9,7 +9,8 @@ void	modules(t_empresa *e, int modulee)
 
 		value = 0;
 		check = false;
-		printf("(1) First time init or (2) Add new worker\n");
+		printf(G">_SELECT:\n"RST);
+		printf("[1]FIRST TIME INIT\n[2]ADD NEW WORKER\n");
 		while (!check)
 		{
 			scanf("%d", &value);
@@ -32,7 +33,7 @@ void	modules(t_empresa *e, int modulee)
 				check = true;
 			}
 			else
-				printf(RED"Write 1 or 2\n"RST);
+				printf(RED">_Write 1 or 2\n"RST);
 		}
 	}
 
@@ -55,7 +56,7 @@ void	modules(t_empresa *e, int modulee)
 			check = false;
 			while (!check)
 			{
-				printf("What do you want to ask [1]Extra_hs [2]In_out [3]Workers\n");
+				printf("ASK_ \n[1] EXTRA_HOURS\n[2] IN_OUT_HOURS\n[3] WORKERS_DATA\n");
 				if ((result = scanf("%d", &m) == 1) && m == 1)
 				{
 					//consult_extras(read_file); 
@@ -76,7 +77,7 @@ void	modules(t_empresa *e, int modulee)
 				}
 				else if (result != 1)
 				{
-					printf(RED"Wrong input, Write [1-3]\n"RST);
+					printf(RED">_Wrong input, Write [1-3]\n"RST);
 					clear_input_buffer();
 				}
 			}
@@ -98,7 +99,7 @@ void	modules(t_empresa *e, int modulee)
 		i = 0;
 		if (read_info != NULL)
 		{
-			printf("Add contract hours to:");
+			printf("ADD CONTRACT HOURS TO:");
 			while (i < read_info->cantidad_empleados)
 			{
 				edit_e = read_info->empleados + i;

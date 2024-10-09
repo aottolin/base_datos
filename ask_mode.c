@@ -12,7 +12,7 @@ void	in_out_date(t_empresa *e)
 	check = false;
 	while (!check)
 	{
-		printf("	Date[DDMM]:\n");
+		printf("	DATE[DDMM]:\n");
 		if ((result = scanf("%d", &date) == 1) && check_date(date) == 0)
 		{
 			day_p = date_id(date);
@@ -25,7 +25,7 @@ void	in_out_date(t_empresa *e)
 		}
 		else if (result != 1)
 		{
-			printf(RED"Wrong date input[DDMM]\n"RST);		
+			printf(RED">_Wrong date input[DDMM]\n"RST);		
 			clear_input_buffer();
 		}
 	}
@@ -77,7 +77,7 @@ void	consult_in_out(t_empresa *e)
 	{
 		while (!check)
 		{
-			printf("Ask by Date or worker>>[1date][2Worker]\n");
+			printf("ASK BY DATE OR WORKER_\n[1]DATE\n[2]WORKER\n");
 			if ((result = scanf("%d", &askby) == 1) && askby == 1)
 			{
 				in_out_date(datos_cargados);
@@ -85,7 +85,7 @@ void	consult_in_out(t_empresa *e)
 			}
 			else if (result == 1 && askby == 2)
 			{
-				printf("Write employee number>>");
+				printf("WRITE WORKER NUMBER>>");
 				while (i < datos_cargados->cantidad_empleados)
 				{
 					read_employee = datos_cargados->empleados + i;
@@ -103,15 +103,15 @@ void	consult_in_out(t_empresa *e)
 					}
 					else if ((result != 1) || check_func(datos_cargados, inout_e, 4 == 0))
 					{
-						printf(RED"Wrong input or non-existent worker\n"RST);
-						printf("Write employee number>>\n");
+						printf(RED">_Wrong input or non-existent worker\n"RST);
+						printf("WRITE WORKER NUMBER>>\n");
 						clear_input_buffer();
 					}
 				}
 			}
 			else if ((result != 1) || (askby != 1 && askby != 2))
 			{
-				printf(RED"Wrong input, Write>>[1or2]\n"RST);
+				printf(RED">_Wrong input, Write>>[1or2]\n"RST);
 				clear_input_buffer();
 			}
 		}

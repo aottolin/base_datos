@@ -6,8 +6,8 @@ int	main(void)
 	bool	check;
 	
 	//presentacion_programa();
-	/*if (contrasena() == -1)
-		return -1;*/
+	if (contrasena() == -1)
+		return -1;
 	t_empresa *e;
 
 	e = fc_malloc(sizeof(t_empresa));
@@ -15,10 +15,10 @@ int	main(void)
 	check = false;
 	while (!check)
 	{
-		printf("	(1) Init new worker  \n");
-		printf("	(2) Add schedules \n");
-		printf("	(3) Init answer module \n");
-		printf("	(4) Add contract hours \n");
+		printf("	[1]INIT NEW WORKER\n");
+		printf("	[2]ADD SCHEDULES\n");
+		printf("	[3]INIT ANSWER MODE\n");
+		printf("	[4]ADD CONTRACT HOURS\n");
 		scanf("%d", &modulo);
 		if (modulo == 1)
 		{
@@ -41,7 +41,7 @@ int	main(void)
 			check = true;
 		}
 		else
-			printf(RED"Write 1, 2 or 3\n"RST);
+			printf(RED">_Write 1, 2 or 3\n"RST);
 	}
 	return (0);
 }

@@ -24,7 +24,7 @@ int	contrasena(void)
 		scanf("%d", &b);
 		if (b == a)
 		{
-			char *print = "Password OK.. Enter the simulation\n";
+			char *print = ">_Password OK.. Enter the simulation\n";
 			imprimir_con_efecto(print, 3);
 			tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 			return (0);
