@@ -81,24 +81,71 @@ void	in_out(t_empleado *e, int day_posic)
 			printf(RED"Wrong time [OUT] input\n"RST);
 		clear_input_buffer();
 	}
-	e->calendario->fecha[day_posic].hs_extras_dia = out - in;
+	e->calendario->fecha[day_posic].hs_hechas = out - in;
 }
 
 void	week_extras(t_empresa *e)
 {
 	int	i;
+	int	week;
+	int	day_posic;
+	int	hs_week;
+	int	month;
 	t_empleado *em;
 	
+
+	week = 0;
 	i = -1;
 	while (++i < e->cantidad_empleados)
 	{
 		em = e->empleados + i;
-
-
-
-
-
-
-
-
+		while (week < 52)
+		{
+			em->calendario->semanas[week].hs_semana = 0;
+			week++;
+		}
+	}
+	i = -1;
+	week = 0;
+	while (++i < e->cantidad_empleados)
+	{
+		em = e->empleados + i;
+		while (week < 52)
+		{
+			hs_week = 0;
+			day_posic = em->calendario->semanas[week].fecha_inicio - 1;
+			while (day_posic < em->calendario->semanas[week].fecha_fin)
+			{
+				hs_week += em->calendario->fecha[day_posic].hs_hechas;
+				printf("day%d week%d hs hechas:%d \n", day_posic, week, em->calendario->fecha[day_posic].hs_hechas);
+				day_posic++;
+			}
+			em->calendario->semanas[week].hs_semana = hs_week;
+			week++;
+		}
+	}
+	i = -1;
+	month = 0;
+	while (++i < e->cantidad_empleados)
+	{
+		em = e->empleados + i;
+		while (month < 12)
+		{
+			em->calendario->contract[month].hs = 20;
+			month++;
+		}
+	}
+	i = -1;
+	week = 0;
+	month = 0;
+	while (++i < e->cantidad_empleados)
+	{
+		em = e->empleados + i;
+		while (week < 52)
+		{
+			 em->calendario->semanas[week].hs_extras = em->calendario->semanas[week].hs_semana - em->calendario->contract[month].hs; 
+			// printf("week%d hs extras:%d \n", week, em->calendario->semanas[week].hs_extras);
+			week++;
+		}
+	}
 }

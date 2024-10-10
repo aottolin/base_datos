@@ -28,13 +28,22 @@ typedef struct	s_fecha
 	int	dia;
 	int	hora_entrada;
 	int	hora_salida;
-	int	hs_extras_dia;
+	int	hs_hechas;
 }				t_fecha;
+
+typedef struct	s_semana
+{
+	int	fecha_inicio;
+	int	fecha_fin;
+	int	hs_semana;
+	int	hs_extras;
+}				t_semana;
 
 typedef struct	s_calendario
 {
 	t_fecha	fecha[365];
-	t_contract	contract[12];
+	t_semana semanas[52];
+	t_contract contract[12];
 	int	hs_extras_semana;
 	int	hs_extras_mes;
 
@@ -81,6 +90,7 @@ int		get_date(int day, int month);
 /*shedules utils*/
 void	contract(t_empleado *e);
 void	in_out(t_empleado *e, int day_posic);
+void	week_extras(t_empresa *e);
 /*ask_consult*/
 void	consult_worker(t_empresa *e);
 void	consult_in_out(t_empresa *e);

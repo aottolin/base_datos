@@ -87,4 +87,5 @@ void	edit_shedules(t_empresa *e)
 	}
 	else
 		printf(RED"Error reading file in edit_shedules"RST);
+	week_extras(e);
 }

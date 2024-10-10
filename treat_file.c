@@ -25,6 +25,7 @@ void write_file(t_empresa *e, int x)
 			fwrite(e->empleados[i].calendario, sizeof(t_calendario), 1, file);
 			fwrite(e->empleados[i].calendario->fecha, sizeof(t_fecha), 365, file);
 			fwrite(e->empleados[i].calendario->contract, sizeof(t_contract), 12, file);
+			fwrite(e->empleados[i].calendario->semanas, sizeof(t_semana), 52, file);
 			i++;
 		}
 	}
@@ -67,6 +68,7 @@ t_empresa* read_file(t_empresa *e)
 		fread(e->empleados[i].calendario, sizeof(t_calendario), 1, file);
 		fread(e->empleados[i].calendario->fecha, sizeof(t_fecha), 365, file);
 		fread(e->empleados[i].calendario->contract, sizeof(t_contract), 12, file);
+		fread(e->empleados[i].calendario->semanas, sizeof(t_semana), 52, file);
 		i++;
 	}
 	fclose(file);

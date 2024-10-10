@@ -18,7 +18,7 @@ void	in_out_date(t_empresa *e)
 			day_p = date_id(date);
 			while (i < e->cantidad_empleados)
 			{
-				printf("[%d]%s >> %d to %d HsTotal >>%d\n", e->empleados[i].id, e->empleados[i].nombre, e->empleados[i].calendario->fecha[day_p].hora_entrada, e->empleados[i].calendario->fecha[day_p].hora_salida, e->empleados[i].calendario->fecha[day_p].hs_extras_dia);
+				printf("[%d]%s >> %d to %d HsTotal >>%d\n", e->empleados[i].id, e->empleados[i].nombre, e->empleados[i].calendario->fecha[day_p].hora_entrada, e->empleados[i].calendario->fecha[day_p].hora_salida, e->empleados[i].calendario->fecha[day_p].hs_hechas);
 			i++;
 			}
 			check = true;

@@ -6,8 +6,8 @@ int	main(void)
 	bool	check;
 	
 	//presentacion_programa();
-	if (contrasena() == -1)
-		return -1;
+//	if (contrasena() == -1)
+//		return -1;
 	t_empresa *e;
 
 	e = fc_malloc(sizeof(t_empresa));
