@@ -81,6 +81,10 @@ int		get_date(int day, int month);
 /*shedules utils*/
 void	contract(t_empleado *e);
 void	in_out(t_empleado *e, int day_posic);
-/*ask_mode*/
+/*ask_consult*/
 void	consult_worker(t_empresa *e);
 void	consult_in_out(t_empresa *e);
+void	consult_extra(t_empresa *e);
+/*ask_utils*/
+void	in_out_date(t_empresa *e);
+void	in_out_date_emp(t_empresa *e, int in_out_e);

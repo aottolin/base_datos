@@ -17,7 +17,7 @@ int	main(void)
 	{
 		printf("	[1]INIT NEW WORKER\n");
 		printf("	[2]ADD SCHEDULES\n");
-		printf("	[3]INIT ANSWER MODE\n");
+		printf("	[3]ANSWER MODE\n");
 		printf("	[4]ADD CONTRACT HOURS\n");
 		scanf("%d", &modulo);
 		if (modulo == 1)

@@ -84,3 +84,21 @@ void	in_out(t_empleado *e, int day_posic)
 	e->calendario->fecha[day_posic].hs_extras_dia = out - in;
 }
 
+void	week_extras(t_empresa *e)
+{
+	int	i;
+	t_empleado *em;
+	
+	i = -1;
+	while (++i < e->cantidad_empleados)
+	{
+		em = e->empleados + i;
+
+
+
+
+
+
+
+
+}
