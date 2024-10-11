@@ -55,4 +55,26 @@ void	week_extras(t_empresa *e)
 		}
 		week = 0;
 	}
+	int	extrasmonth;
+	
+	i = -1;
+	while (++i < e->cantidad_empleados)
+	{
+		em = e->empleados + i;
+		month = 0;
+		while (month < 12)
+		{
+			extrasmonth = 0;
+			while (week < 62)
+			{
+				if (month == em->calendario->semanas[week].month)
+					extrasmonth += em->calendario->semanas[week].hs_extras; 
+				week++;
+			}
+			em->calendario->contract[month].ex_month = extrasmonth;
+			printf("%d %d\n", month + 1, em->calendario->contract[month].ex_month);
+			week = 0;
+			month++;
+		}
+	}
 }

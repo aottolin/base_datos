@@ -55,7 +55,7 @@ void	init_empleados(t_empresa *e)
 	bool	correct;
 	int	contador;
 	t_empleado *empleado;
-	
+
 	i = -1;
 	contador = 1;
 	correct = false;

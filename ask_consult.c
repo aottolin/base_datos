@@ -17,7 +17,7 @@ void	consult_extra(t_empresa *e)
 		}
 		else if (result == 1 && m == 2)
 		{
-		//	ask_by_month(e);
+			ask_by_month(e);
 			check = true;
 		}
 		else if (result == 1)

@@ -14,34 +14,67 @@ void	ask_by_week(t_empresa *e)
 
 	i = -1;
 	week = 0;
+
 	printf("From[DDMM]\n");
 	scanf("%d", &date_from);
 	printf("To[DDMM]\n");
 	scanf("%d", &date_to);
-	
 	conv_from = date_id(date_from) + 1;
-	printf("conv from%d\n", conv_from);
 	conv_to = date_id(date_to) + 1;
-	printf("conv to%d\n", conv_to);
-	
 	while (week < 62)
 	{
-		//printf("week%d\n", week);
 		week_start = e->empleados->calendario->semanas[week].fecha_inicio;
-		//printf("week_s%d\n", e->empleados->calendario->semanas[week].fecha_inicio);
 		week_finish = e->empleados->calendario->semanas[week].fecha_fin;
-		//printf("week_f%d\n", e->empleados->calendario->semanas[week].fecha_fin);
-	
 		if ((week_start >= conv_from && week_start <= conv_to) || (week_finish >= conv_from && week_finish <= conv_to) || (conv_from >= week_start && conv_to <= week_finish))
 		{
 			while (++i < e->cantidad_empleados)
 			{
 				em = e->empleados + i;
-				printf("Week[%d] from[%d]to[%d] Worker:%s Hs_extras %d\n", week + 1, em->calendario->semanas[week].fecha_inicio, em->calendario->semanas[week].fecha_fin, em->nombre, em->calendario->semanas[week].hs_extras);
+				printf("Week[%d] from[%02d]to[%02d] Worker:%s Hs_extras %d\n", week + 1, em->calendario->semanas[week].date_start, em->calendario->semanas[week].date_fin, em->nombre, em->calendario->semanas[week].hs_extras);
 			}
 			printf("\n");
 		}
 		week++;
+	}
+}
+
+void	ask_by_month(t_empresa *e)
+{
+
+	int	month[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+	int	i;
+	int	month_from;
+	int month_to;
+	int week;
+	int	month_start;
+	int	month_fin;
+	t_empleado *em;
+	
+
+	i = -1;
+	week = 0;
+	printf("From[MM]\n");
+	scanf("%d", &month_from);
+	printf("To[MM]\n");
+	scanf("%d", &month_to);
+	month_from = month[month_from - 1];
+	month_to = month[month_to - 1];
+
+	while (week < 62)
+	{
+		month_start = e->empleados->calendario->semanas[week].month;
+		month_fin = e->empleados->calendario->semanas[week].month;
+		if ((month_start >= month_from && month_start <= month_to) || (month_fin >= month_from && month_fin <= month_to) || (month_from >= month_start && month_to <= month_fin))
+		{
+			while (++i < e->cantidad_empleados)
+			{
+				em = e->empleados + i;
+				printf("Week[%d] from[%02d]to[%02d] Month[%d] Worker:%s Hs_extras %d\n", week + 1, em->calendario->semanas[week].date_start, em->calendario->semanas[week].date_fin, em->calendario->semanas[week].month + 1, em->nombre, em->calendario->semanas[week].hs_extras);
+			}
+			printf("\n");
+		}
+		week++;
+		i = -1;
 	}
 }
 

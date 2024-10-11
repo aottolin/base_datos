@@ -21,6 +21,7 @@ typedef struct	s_contract
 {
 	int	id;
 	int	hs;
+	int ex_month;
 }				t_contract;
 
 typedef struct	s_fecha
@@ -35,19 +36,19 @@ typedef struct	s_semana
 {
 	int	fecha_inicio;
 	int	fecha_fin;
+	int	date_start;
+	int	date_fin;
+	int	month;
 	int	hs_semana;
 	int	hs_extras;
 }				t_semana;
 
 typedef struct	s_calendario
 {
-	t_fecha	fecha[365];
+	t_fecha	fecha[366];
 	t_semana semanas[62];
 	t_contract contract[12];
 	t_empresa	*empresa;
-	int	hs_extras_semana;
-	int	hs_extras_mes;
-
 }				t_calendario;
 
 typedef struct	s_empleado
@@ -88,6 +89,7 @@ void	edit_shedules(t_empresa *e);
 /*init_calender*/
 int		date_id(int date);
 int		get_date(int day, int month);
+int		get_date_inverted(int posic);
 /*shedules utils*/
 void	contract(t_empleado *e);
 void	in_out(t_empleado *e, int day_posic);
@@ -100,3 +102,4 @@ void	consult_extra(t_empresa *e);
 void	in_out_date(t_empresa *e);
 void	in_out_date_emp(t_empresa *e, int in_out_e);
 void	ask_by_week(t_empresa *e);
+void	ask_by_month(t_empresa *e);
