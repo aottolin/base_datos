@@ -42,8 +42,9 @@ typedef struct	s_semana
 typedef struct	s_calendario
 {
 	t_fecha	fecha[365];
-	t_semana semanas[52];
+	t_semana semanas[62];
 	t_contract contract[12];
+	t_empresa	*empresa;
 	int	hs_extras_semana;
 	int	hs_extras_mes;
 
@@ -98,3 +99,4 @@ void	consult_extra(t_empresa *e);
 /*ask_utils*/
 void	in_out_date(t_empresa *e);
 void	in_out_date_emp(t_empresa *e, int in_out_e);
+void	ask_by_week(t_empresa *e);

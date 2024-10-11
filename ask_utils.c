@@ -1,5 +1,50 @@
 #include "lib.h"
 
+void	ask_by_week(t_empresa *e)
+{
+	int	week;
+	int	date_from;
+	int	date_to;
+	int	conv_from;
+	int	conv_to;
+	int	i;
+	int	week_start;
+	int	week_finish;
+	t_empleado *em;
+
+	i = -1;
+	week = 0;
+	printf("From[DDMM]\n");
+	scanf("%d", &date_from);
+	printf("To[DDMM]\n");
+	scanf("%d", &date_to);
+	
+	conv_from = date_id(date_from) + 1;
+	printf("conv from%d\n", conv_from);
+	conv_to = date_id(date_to) + 1;
+	printf("conv to%d\n", conv_to);
+	
+	while (week < 62)
+	{
+		//printf("week%d\n", week);
+		week_start = e->empleados->calendario->semanas[week].fecha_inicio;
+		//printf("week_s%d\n", e->empleados->calendario->semanas[week].fecha_inicio);
+		week_finish = e->empleados->calendario->semanas[week].fecha_fin;
+		//printf("week_f%d\n", e->empleados->calendario->semanas[week].fecha_fin);
+	
+		if ((week_start >= conv_from && week_start <= conv_to) || (week_finish >= conv_from && week_finish <= conv_to) || (conv_from >= week_start && conv_to <= week_finish))
+		{
+			while (++i < e->cantidad_empleados)
+			{
+				em = e->empleados + i;
+				printf("Week[%d] from[%d]to[%d] Worker:%s Hs_extras %d\n", week + 1, em->calendario->semanas[week].fecha_inicio, em->calendario->semanas[week].fecha_fin, em->nombre, em->calendario->semanas[week].hs_extras);
+			}
+			printf("\n");
+		}
+		week++;
+	}
+}
+
 void	in_out_date(t_empresa *e)
 {
 	bool	check;

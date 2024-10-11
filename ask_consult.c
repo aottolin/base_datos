@@ -3,34 +3,21 @@
 void	consult_extra(t_empresa *e)
 {
 	bool	check;
-	int	i;
 	int		result;
 	int		m;
-	int	week;
-	t_empleado *em;
 
 	check = false;
-	week = 0;
 	while (!check)
 	{
 		printf("EXTRAS BY_\n[1]WEEK\n[2]MONTH\n");
 		if ((result = scanf("%d", &m) == 1) && m == 1)
 		{
-			while (week < 52)
-			{
-				i = -1;
-				while (++i < e->cantidad_empleados)
-				{
-					em = e->empleados + i;
-					printf("week[%d] worker:%s hs extras: %d\n", week, em->nombre, em->calendario->semanas[week].hs_extras);
-				}
-				week++;
-			}
+			ask_by_week(e);
 			check = true;
 		}
 		else if (result == 1 && m == 2)
 		{
-
+		//	ask_by_month(e);
 			check = true;
 		}
 		else if (result == 1)

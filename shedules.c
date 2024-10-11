@@ -30,7 +30,7 @@ void	shedules(t_empresa *e, int id)
 					day_p = date_id(date);
 					//printf("day_p:%d\n", day_p);
 					in_out(edit_employee, day_p);
-					printf("Do you want to add another date in [%d]%s?	[1]yes-[2]no\n", edit_employee->id, edit_employee->nombre);						//edit_employee->calendario->fecha[day_p].hora_salida = 10;
+					printf("Do you want to add another date in [%d]%s?	[1]yes-[2]no\n", edit_employee->id, edit_employee->nombre);	
 					if ((result2 = scanf("%d", &c) == 1) && c == 1)
 						check = false;
 					else if (result2 == 1 && c == 2)
