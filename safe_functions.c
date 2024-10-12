@@ -9,7 +9,7 @@ void	*fc_malloc(size_t bytes)
 	return (ret);
 }
 
-int	check_func(t_empresa *e, int value, int m)
+int	check_func(t_empresa *e, float value, int m)
 {
 	if (m == 1) // check nbr;
 	{
@@ -31,7 +31,7 @@ int	check_func(t_empresa *e, int value, int m)
 		while (++i < e->cantidad_empleados)
 		if (e->empleados[i].id == value)
 		{
-			printf(RED"Employee number[%d] already exist\n"RST, value);
+			printf(RED"Employee number[%.0f] already exist\n"RST, value);
 			return (-1);
 		}
 		return 0;
@@ -46,7 +46,7 @@ int	check_func(t_empresa *e, int value, int m)
 				i++;
 			else
 				return (0);
-		printf(RED"Employee number[%d] non exist\n"RST, value);
+		printf(RED"Employee number[%.0f] non exist\n"RST, value);
 	}
 	else if (m == 5) // check time
 	{

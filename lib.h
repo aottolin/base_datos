@@ -27,9 +27,9 @@ typedef struct	s_contract
 typedef struct	s_fecha
 {
 	int	dia;
-	int	hora_entrada;
-	int	hora_salida;
-	int	hs_hechas;
+	float	hora_entrada;
+	float	hora_salida;
+	float	hs_hechas;
 }				t_fecha;
 
 typedef struct	s_semana
@@ -39,8 +39,8 @@ typedef struct	s_semana
 	int	date_start;
 	int	date_fin;
 	int	month;
-	int	hs_semana;
-	int	hs_extras;
+	float	hs_semana;
+	float	hs_extras;
 }				t_semana;
 
 typedef struct	s_calendario
@@ -79,7 +79,7 @@ void		*fc_malloc(size_t bytes);
 int			check_str(char *str);
 int			check_date(int date);
 void		clear_input_buffer();
-int			check_func(t_empresa *e, int value, int m);
+int			check_func(t_empresa *e, float value, int m);
 /*utils*/
 void		imprimir_con_efecto(const char *texto, int color);
 void		presentacion_programa(void);
