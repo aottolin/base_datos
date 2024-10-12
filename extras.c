@@ -72,7 +72,7 @@ void	week_extras(t_empresa *e)
 				week++;
 			}
 			em->calendario->contract[month].ex_month = extrasmonth;
-			printf("%d %d\n", month + 1, em->calendario->contract[month].ex_month);
+			//printf("%d %d\n", month + 1, em->calendario->contract[month].ex_month);
 			week = 0;
 			month++;
 		}

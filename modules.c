@@ -1,5 +1,46 @@
 #include "lib.h"
 
+void	module_3(t_empresa *datos_cargados, int value)
+{	
+	bool	check;
+	int		result;
+	int		m;
+	
+	if (value == -1)
+		return ;
+	check = false;
+	while (!check)
+	{
+		printf("\n[1]WORKERS_DATA\n[2]IN_OUT_HOURS\n[3]EXTRA_HS\n");
+		if ((result = scanf("%d", &m) == 1) && m == 3)
+			consult_extra(datos_cargados); 
+		else if (result == 1 && m == 2)
+			consult_in_out(datos_cargados);
+		else if (result == 1 && m == 1)
+			consult_worker(datos_cargados); 
+		else if (m == 0)
+		{
+			check = true;
+			principal(datos_cargados, 0);
+		}
+		else if (m == -1)
+		{
+			check = true;
+			principal(datos_cargados, -1);
+		}
+		else if (result == 1)
+		{
+			printf(RED">_Wrong input, Write [1-3]\n"RST);
+			clear_input_buffer();
+		}
+		else if (result != 1)
+		{
+			printf(RED">_Wrong input, Write [1-3]\n"RST);
+			clear_input_buffer();
+		}
+	}
+}
+
 void	modules(t_empresa *e, int modulee)
 {
 	if (modulee == 1)
@@ -32,6 +73,16 @@ void	modules(t_empresa *e, int modulee)
 				write_file(e, 2);
 				check = true;
 			}
+			else if (value == 0)
+			{
+				check = true;
+				principal(e, 0);
+			}
+			else if (value == -1)
+			{
+				check = true;
+				principal(e, -1);
+			}
 			else
 				printf(RED">_Write 1 or 2\n"RST);
 		}
@@ -49,44 +100,10 @@ void	modules(t_empresa *e, int modulee)
 
 		if (datos_cargados != NULL)
 		{
-			bool	check;
-			int		result;
-			int		m;
-
-			check = false;
-			while (!check)
-			{
-				printf("ASK_ \n[1]EXTRA_HOURS\n[2]IN_OUT_HOURS\n[3]WORKERS_DATA\n");
-				if ((result = scanf("%d", &m) == 1) && m == 1)
-				{
-					consult_extra(datos_cargados); 
-					check = true;
-				}
-				else if (result == 1 && m == 2)
-				{
-					consult_in_out(datos_cargados);
-					printf(G"Entering..[2]In_Out\n"RST);
-					check = true;
-
-				}
-				else if (result == 1 && m == 3)
-				{
-					consult_worker(datos_cargados); 
-					check = true;
-
-				}
-				else if (result == 1)
-				{
-					printf(RED">_Wrong input, Write [1-3]\n"RST);
-					clear_input_buffer();
-				}
-				else if (result != 1)
-				{
-					printf(RED">_Wrong input, Write [1-3]\n"RST);
-					clear_input_buffer();
-				}
-			}
+			module_3(datos_cargados, 0);
 		}
+		else
+			printf(RED"Error reading file in module 3\n"RST);
 	}
 	if (modulee == 4)
 	{
@@ -131,20 +148,3 @@ void	modules(t_empresa *e, int modulee)
 		}
 	}
 }
-
-/*
-			while (++i < e->cantidad_empleados && x < 277)
-			{
-				printf("Nombre: %s\n", datos_cargados->empleados[i].nombre);
-				printf("Numero: %d\n", datos_cargados->empleados[i].id);
-				printf("fecha: %d ", datos_cargados->empleados[i].calendario->fecha[x].dia );
-				printf("hora_entrada:%d ", datos_cargados->empleados[i].calendario->fecha[x].hora_entrada);
-				printf("hora_salida:%d\n", datos_cargados->empleados[i].calendario->fecha[x].hora_salida);
-				x++;
-			}
-		}
-			//printf("Primera fecha del ano:%d\n", datos_cargados->empleados[i].calendario->fecha[0].dia);
-			//printf("ultima fecha del ano:%d\n", datos_cargados->empleados[i].calendario->fecha[364].dia);
-	}
-}
-*/

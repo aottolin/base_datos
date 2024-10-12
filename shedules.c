@@ -34,7 +34,11 @@ void	shedules(t_empresa *e, int id)
 					if ((result2 = scanf("%d", &c) == 1) && c == 1)
 						check = false;
 					else if (result2 == 1 && c == 2)
+					{
 						check = true;
+						write_file(e, 2);
+						principal(e, 0);
+					}
 					else
 					{
 						printf(RED"Wrong input[1] or [2]\n"RST);

@@ -1,5 +1,24 @@
 #include "lib.h"
 
+void	consult_worker(t_empresa *e)
+{
+	t_empresa *datos_cargados = read_file(e);
+	t_empleado *read_employee;
+	int	i;
+
+	i = 0;
+	
+	if (datos_cargados != NULL)
+	{	
+		while (i < datos_cargados->cantidad_empleados)
+		{
+			read_employee = datos_cargados->empleados + i;
+			printf(" [%d]%s", read_employee->id, read_employee->nombre);
+			i++;
+		}
+		printf("\n");
+	}
+}
 void	consult_extra(t_empresa *e)
 {
 	bool	check;
@@ -19,6 +38,16 @@ void	consult_extra(t_empresa *e)
 		{
 			ask_by_month(e);
 			check = true;
+		}
+		else if (m == 0)
+		{
+			check = true;
+			module_3(e, 0);
+		}
+		else if (m == -1)
+		{
+			check = true;
+			principal(e, -1);
 		}
 		else if (result == 1)
 		{
@@ -84,6 +113,16 @@ void	consult_in_out(t_empresa *e)
 					}
 				}
 			}
+			else if (askby == 0)
+			{
+				check = true;
+				module_3(datos_cargados, -1);
+			}
+			else if (askby == -1)
+			{
+				check = true;
+				principal(datos_cargados, -1);
+			}
 			else if ((result != 1) || (askby != 1 && askby != 2))
 			{
 				printf(RED">_Wrong input, Write>>[1or2]\n"RST);
@@ -93,22 +132,4 @@ void	consult_in_out(t_empresa *e)
 	}
 }
 
-void	consult_worker(t_empresa *e)
-{
-	t_empresa *datos_cargados = read_file(e);
-	t_empleado *read_employee;
-	int	i;
 
-	i = 0;
-	
-	if (datos_cargados != NULL)
-	{	
-		while (i < datos_cargados->cantidad_empleados)
-		{
-			read_employee = datos_cargados->empleados + i;
-			printf(" [%d]%s", read_employee->id, read_employee->nombre);
-			i++;
-		}
-		printf("\n");
-	}
-}

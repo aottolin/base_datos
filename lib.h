@@ -74,6 +74,7 @@ void		init_new_employeed(t_empresa *e);
 void		init_calendario(t_empresa *e);
 /*modules*/
 void		modules(t_empresa *e, int modulee);
+void	module_3(t_empresa *datos_cargados, int value);
 /*safe_functions*/
 void		*fc_malloc(size_t bytes);
 int			check_str(char *str);
@@ -103,3 +104,5 @@ void	in_out_date(t_empresa *e);
 void	in_out_date_emp(t_empresa *e, int in_out_e);
 void	ask_by_week(t_empresa *e);
 void	ask_by_month(t_empresa *e);
+
+void	principal(t_empresa *e, int value);
