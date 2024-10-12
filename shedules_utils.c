@@ -81,7 +81,22 @@ void	in_out(t_empleado *e, int day_posic)
 			printf(RED"Wrong time [OUT] input\n"RST);
 		clear_input_buffer();
 	}
-	e->calendario->fecha[day_posic].hs_hechas = out - in;
+
+	if (out >= 7 && out <= 24)
+		e->calendario->fecha[day_posic].hs_hechas = out - in;
+	else
+	{
+		if (out == 01)	
+			e->calendario->fecha[day_posic].hs_hechas = 25 - in;
+		if (out == 02)
+			e->calendario->fecha[day_posic].hs_hechas = 26 - in;	
+		if (out == 03)
+			e->calendario->fecha[day_posic].hs_hechas = 27 - in;
+		if (out == 04)
+			e->calendario->fecha[day_posic].hs_hechas = 28 - in;
+		if (out == 05)
+			e->calendario->fecha[day_posic].hs_hechas = 29 - in;
+		if (out == 06)
+			e->calendario->fecha[day_posic].hs_hechas = 30 - in;
+	}
 }
-
-
