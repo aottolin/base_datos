@@ -146,5 +146,67 @@ void	modules(t_empresa *e, int modulee)
 			}
 			write_file(e, 2);
 		}
+		else
+			printf(RED"Error reading file in module 4\n"RST);
+	}
+	if (modulee == 5)
+	{
+		int	id_e;
+		int	i;
+		int	result;
+		bool	check;
+		t_empresa *datos_cargados = read_file(e);
+		t_empleado *em;
+
+		check = false;
+		i = 0;
+		if (datos_cargados != NULL)
+		{
+			printf("DELETE WORKER NUMBER>>");
+			while (i < datos_cargados->cantidad_empleados)
+			{
+				em = datos_cargados->empleados + i;
+				printf(" [%d]%s", em->id, em->nombre);
+				i++;
+			}
+			printf("\n");
+			while (!check)
+			{
+				if ((result = scanf("%d", &id_e) == 1) && check_func(datos_cargados, id_e, 1) == 0 && check_func(datos_cargados, id_e, 4) == 0)
+				{
+					int	x;
+					bool work_finded = false;
+					t_empleado *worker;
+					
+					x = 0;
+					while (!work_finded)
+					{
+						worker = datos_cargados->empleados + x;
+						if (worker->id == id_e)
+						{
+							while (x < datos_cargados->cantidad_empleados)
+							{
+								datos_cargados->empleados[x] = datos_cargados->empleados[x + 1];
+								datos_cargados->empleados[x].id = datos_cargados->empleados[x].id - 1;
+								x++;
+								work_finded = true;
+							}
+							datos_cargados->cantidad_empleados--;
+							check = true;
+						}	
+						else
+							x++;
+					}
+					write_file(e, 2);
+				}
+				else if (result != 1)
+				{
+					printf(RED"Error input.. Write a correct worker [NUMBER]\n"RST);
+					clear_input_buffer();
+				}
+			}
+		}
+		else
+			printf(RED"Error reading file in module 5\n"RST);
 	}
 }

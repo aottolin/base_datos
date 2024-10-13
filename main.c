@@ -29,6 +29,7 @@ void	principal(t_empresa *e, int value)
 		printf("	[2]ADD SCHEDULES\n");
 		printf("	[3]ANSWER MODE\n");
 		printf("	[4]ADD CONTRACT HOURS\n");
+		printf("	[5]DELETE WORKER\n");
 		scanf("%d", &modulo);
 		if (modulo == 1 && value == 0)
 		{
@@ -51,6 +52,11 @@ void	principal(t_empresa *e, int value)
 			modules(e, 4);
 			check = true;	
 		}
+		else if (modulo == 5 && value == 0)
+		{
+			modules(e, 5);
+			check = true;
+		}
 		else if (modulo == -1)
 		{
 			check = true;
@@ -58,6 +64,9 @@ void	principal(t_empresa *e, int value)
 			return ;
 		}
 		else
-			printf(RED">_Write 1, 2 or 3\n"RST);
+		{
+			printf(RED">_Write 1-2-3-4-5 or -1\n"RST);
+			clear_input_buffer();
+		}
 	}
 }
