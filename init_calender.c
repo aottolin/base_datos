@@ -1,6 +1,6 @@
 #include "lib.h"
 
-void	separe_weeks(t_empresa *e)
+void	separe_weeks(t_empleado *e)
 {
 	int	days_month_year[] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
@@ -25,21 +25,21 @@ void	separe_weeks(t_empresa *e)
 			if (day_month == 1 && result == 0)
 			{
 				result = 1;
-				e->empleados->calendario->semanas[week].fecha_inicio = day_current;
-				e->empleados->calendario->semanas[week].month = month;
+				e->calendario->semanas[week].fecha_inicio = day_current;
+				e->calendario->semanas[week].month = month;
 				//printf("Week:%d fecha inicio->%d\n", week, e->empleados->calendario->semanas[week].fecha_inicio);
 			}
 			if (day_week == 0 && result == 0)
 			{
 				result = 1;
-				e->empleados->calendario->semanas[week].fecha_inicio = day_current;
-				e->empleados->calendario->semanas[week].month = month;
+				e->calendario->semanas[week].fecha_inicio = day_current;
+				e->calendario->semanas[week].month = month;
 				//printf("Week:%d fecha inicio->%d\n", week, e->empleados->calendario->semanas[week].fecha_inicio);
 			}
 			if (day_week == 6 || day_month == days_month_year[month])
 			{
-				e->empleados->calendario->semanas[week].fecha_fin = day_current;
-				e->empleados->calendario->semanas[week].month = month;
+				e->calendario->semanas[week].fecha_fin = day_current;
+				e->calendario->semanas[week].month = month;
 				//printf("Week:%d fecha fin->%d\n", week, e->empleados->calendario->semanas[week].fecha_fin);
 				week++;
 				if (day_week == 6)
@@ -47,8 +47,8 @@ void	separe_weeks(t_empresa *e)
 			}	
 				if (day_week == 6 && day_month == days_month_year[month] && month == 11 && day_month == 31)
 			{
-				e->empleados->calendario->semanas[week].fecha_fin = day_current;
-				e->empleados->calendario->semanas[week].month = month;
+				e->calendario->semanas[week].fecha_fin = day_current;
+				e->calendario->semanas[week].month = month;
 				//printf("Week:%d fecha fin->%d\n", week, e->empleados->calendario->semanas[week].fecha_fin);
 				day_week = -1;
 				week++;
@@ -63,8 +63,8 @@ void	separe_weeks(t_empresa *e)
 	week = 0;
 	while (week < 62)
 	{
-		e->empleados->calendario->semanas[week].date_start = get_date_inverted(e->empleados->calendario->semanas[week].fecha_inicio);
-		e->empleados->calendario->semanas[week].date_fin = get_date_inverted(e->empleados->calendario->semanas[week].fecha_fin);
+		e->calendario->semanas[week].date_start = get_date_inverted(e->calendario->semanas[week].fecha_inicio);
+		e->calendario->semanas[week].date_fin = get_date_inverted(e->calendario->semanas[week].fecha_fin);
 		week++;
 	}
 
@@ -120,7 +120,7 @@ int	date_id(int date)
 	return (date_posicion);
 }
 
-void	init_calendario(t_empresa *e)
+void	init_calendario(t_empleado *e)
 {
 	int fecha_compacta;
 	int	dias_por_mes[] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -128,64 +128,24 @@ void	init_calendario(t_empresa *e)
 	int	dia;
 	int mes;
 	char	fecha_comp[5];
-	t_empresa *read_data;
-
-	read_data = read_file(e);
-	if (read_data != NULL)
-	{
-		x = 0;
-		dia = 1;
-		mes = 0;
-		while (mes < 12)
-		{
-			while (dia <= dias_por_mes[mes])
-			{
-				sprintf(fecha_comp, "%02d%02d", dia, mes + 1);
-				fecha_compacta = atoi(fecha_comp);
-				read_data->empleados->calendario->fecha[x].dia = fecha_compacta;	
-			//	printf("%d\n", e->empleados->calendario->fecha[x].dia);
-				dia++;
-				x++;
-			}
-			mes++;
-			dia = 1;
-		}
-		int i;
-		int z;
 	
-		i = 0;
-		while (i < read_data->cantidad_empleados)
+	e->calendario = fc_malloc(sizeof(t_calendario));
+	x = 0;
+	dia = 1;
+	mes = 0;
+	while (mes < 12)
+	{
+		while (dia <= dias_por_mes[mes])
 		{
-			z = -1;
-			while (++z < 366)
-			{
-				read_data->empleados[i].calendario->fecha[z].dia = read_data->empleados->calendario->fecha[z].dia;
-				//printf("%d\n", e->empleados[i].calendario->fecha[z].dia);
-			}
-			i++;
+			sprintf(fecha_comp, "%02d%02d", dia, mes + 1);
+			fecha_compacta = atoi(fecha_comp);
+			e->calendario->fecha[x].dia = fecha_compacta;	
+			//	printf("%d\n", e->empleados->calendario->fecha[x].dia);
+			dia++;
+			x++;
 		}
-		separe_weeks(read_data);
-		int week = -1;
-		i = 0;
-		while (i < e->cantidad_empleados)
-		{
-			week = -1;
-			while (++week < 62)
-			{
-				e->empleados[i].calendario->semanas[week].fecha_inicio = e->empleados->calendario->semanas[week].fecha_inicio;
-				e->empleados[i].calendario->semanas[week].fecha_fin = e->empleados->calendario->semanas[week].fecha_fin;
-			e->empleados[i].calendario->semanas[week].date_start = e->empleados->calendario->semanas[week].date_start;
-			e->empleados[i].calendario->semanas[week].date_fin = e->empleados->calendario->semanas[week].date_fin;
-			e->empleados[i].calendario->semanas[week].month = e->empleados->calendario->semanas[week].month;
-				//printf("nombre%s week:%d inicio%d ", e->empleados[i].nombre, week, e->empleados[i].calendario->semanas[week].fecha_inicio);
-				//printf("fin %d ", e->empleados[i].calendario->semanas[week].fecha_fin);
-				//printf("date_star %02d ", e->empleados[i].calendario->semanas[week].date_start);
-				//printf("date_fin %02d\n ", e->empleados[i].calendario->semanas[week].date_fin);
-				//printf("mes%02d\n ", e->empleados[i].calendario->semanas[week].month);
-			}
-			i++;
-		}
+		mes++;
+		dia = 1;
 	}
-	else
-		printf(RED"Problem reading read_data in init_calender\n"RST);
+	separe_weeks(e);
 }

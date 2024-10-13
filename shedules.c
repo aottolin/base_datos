@@ -36,8 +36,6 @@ void	shedules(t_empresa *e, int id)
 					else if (result2 == 1 && c == 2)
 					{
 						check = true;
-						write_file(e, 2);
-						principal(e, 0);
 					}
 					else
 					{

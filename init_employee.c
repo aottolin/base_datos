@@ -22,7 +22,9 @@ void	init_new_employeed(t_empresa *e)
 			a++;
 		}
 		printf("\n");
-		new_employeed = read_data->empleados + i;
+		t_empleado *temp = realloc(read_data->empleados, sizeof(t_empleado) * (i + 1));
+		read_data->empleados = temp;
+		new_employeed = &read_data->empleados[i];
 		while (!check)
 		{
 			int resultado;
@@ -41,7 +43,8 @@ void	init_new_employeed(t_empresa *e)
 		fgets(new_employeed->nombre, sizeof(new_employeed->nombre), stdin);
 		new_employeed->nombre[strcspn(new_employeed->nombre, "\n")] = '\0';
 		new_employeed->empresa = e;
-		read_data->cantidad_empleados = i + 1;
+		read_data->cantidad_empleados++;
+		init_calendario(new_employeed);
 	}
 	else
 		printf("Program cannot read the data(init_new_employeed_fc\n");
@@ -103,6 +106,7 @@ void	init_empleados(t_empresa *e)
 			else
 				printf(RED"Write valid input (char)\n"RST);
 			empleado->empresa = e;
+			init_calendario(empleado);
 		}
 		correct = false;
 		contador++;

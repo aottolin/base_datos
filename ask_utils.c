@@ -30,7 +30,7 @@ void	ask_by_week(t_empresa *e)
 			while (++i < e->cantidad_empleados)
 			{
 				em = e->empleados + i;
-				printf("Week[%d] from[%02d]to[%02d] Worker:%s Hs_extras %f\n", week + 1, em->calendario->semanas[week].date_start, em->calendario->semanas[week].date_fin, em->nombre, em->calendario->semanas[week].hs_extras);
+				printf("Week[%d] from[%02d]to[%02d] Worker:%s Hs_extras %.2f\n", week + 1, em->calendario->semanas[week].date_start, em->calendario->semanas[week].date_fin, em->nombre, em->calendario->semanas[week].hs_extras);
 			}
 			printf("\n");
 		}
@@ -69,7 +69,7 @@ void	ask_by_month(t_empresa *e)
 			while (++i < e->cantidad_empleados)
 			{
 				em = e->empleados + i;
-				printf("Week[%d] from[%02d]to[%02d] Month[%d] Worker:%s Hs_extras %f\n", week + 1, em->calendario->semanas[week].date_start, em->calendario->semanas[week].date_fin, em->calendario->semanas[week].month + 1, em->nombre, em->calendario->semanas[week].hs_extras);
+				printf("Week[%d] from[%02d]to[%02d] Month[%d] Worker:%s Hs_extras %.2f\n", week + 1, em->calendario->semanas[week].date_start, em->calendario->semanas[week].date_fin, em->calendario->semanas[week].month + 1, em->nombre, em->calendario->semanas[week].hs_extras);
 			}
 			printf("\n");
 		}

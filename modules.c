@@ -60,16 +60,12 @@ void	modules(t_empresa *e, int modulee)
 			if (value == 1)
 			{
 				init_empleados(e);
-				write_file(e, 1);
-				init_calendario(e);
 				write_file(e, 2);
 				check = true;
 			}
 			else if (value == 2)
 			{
 				init_new_employeed(e);
-				write_file(e, 1);
-				init_calendario(e);
 				write_file(e, 2);
 				check = true;
 			}
@@ -92,6 +88,7 @@ void	modules(t_empresa *e, int modulee)
 	{
 		edit_shedules(e);
 		write_file(e, 2);
+		principal(e, 0);
 	}
 
 	if (modulee == 3)
@@ -187,7 +184,7 @@ void	modules(t_empresa *e, int modulee)
 							while (x < datos_cargados->cantidad_empleados)
 							{
 								datos_cargados->empleados[x] = datos_cargados->empleados[x + 1];
-								datos_cargados->empleados[x].id = datos_cargados->empleados[x].id - 1;
+								datos_cargados->empleados[x].id = datos_cargados->empleados[x - 1].id + 1;
 								x++;
 								work_finded = true;
 							}

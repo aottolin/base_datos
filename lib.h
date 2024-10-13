@@ -71,7 +71,7 @@ t_empresa* read_file(t_empresa *e);
 /*init*/
 void		init_empleados(t_empresa *e);
 void		init_new_employeed(t_empresa *e);
-void		init_calendario(t_empresa *e);
+void		init_calendario(t_empleado *e);
 /*modules*/
 void		modules(t_empresa *e, int modulee);
 void	module_3(t_empresa *datos_cargados, int value);
@@ -106,3 +106,5 @@ void	ask_by_week(t_empresa *e);
 void	ask_by_month(t_empresa *e);
 
 void	principal(t_empresa *e, int value);
+void	init_newcalendario(t_empresa *e);
+void	separe_new_weeks(t_empresa *e);

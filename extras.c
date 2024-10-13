@@ -5,7 +5,7 @@ void	week_extras(t_empresa *e)
 	int	i;
 	int	week;
 	int	day_posic;
-	int	hs_week;
+	float	hs_week;
 	int	month;
 	t_empleado *em;
 	
@@ -35,7 +35,7 @@ void	week_extras(t_empresa *e)
 			while (day_posic < em->calendario->semanas[week].fecha_fin)
 			{
 				hs_week += em->calendario->fecha[day_posic].hs_hechas;
-			//	printf("day%d week%d hs hechas:%d \n", day_posic + 1, week, em->calendario->fecha[day_posic].hs_hechas);
+				//printf("day%d week%d hs hechas:%.2f \n", day_posic + 1, week, em->calendario->fecha[day_posic].hs_hechas);
 				day_posic++;
 			}
 			em->calendario->semanas[week].hs_semana = hs_week;
@@ -55,7 +55,7 @@ void	week_extras(t_empresa *e)
 		}
 		week = 0;
 	}
-	int	extrasmonth;
+	float	extrasmonth;
 	
 	i = -1;
 	while (++i < e->cantidad_empleados)
