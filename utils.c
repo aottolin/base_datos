@@ -8,12 +8,12 @@ int	contrasena(void)
 	int	counter2;
 	struct	termios	oldt, newt;
 
-	a = 1111;
+	a = 1704;
 	b = 0;
 	counter = 0;
 	counter2 = 2;
 	
-	printf(RED"Alex, i need the password to continue..\n"RST);
+	printf(RED"Alex Collet, i need the password to continue..\n"RST);
 	tcgetattr(STDIN_FILENO, &oldt);
 	newt = oldt;
 	newt.c_lflag &= ~(ECHO);
@@ -77,7 +77,7 @@ void	imprimir_con_efecto(const char *texto, int color)
 
 void	presentacion_programa(void)
 {
-	const char	*texto = "	Good morning Alex, everything it's ready to start!";
+	const char	*texto = "	Good morning Alex Collet, everything it's ready to start!";
 	const char	*texto2 = "		Do you want to init the simulation now?";
 	const char	*texto3 = "				PRESS:ENTER";
 	imprimir_con_efecto(texto, 1);
