@@ -112,3 +112,4 @@ void	ask_by_month(t_empresa *e);
 void	principal(t_empresa *e, int value);
 void	init_newcalendario(t_empresa *e);
 void	separe_new_weeks(t_empresa *e);
+void	week_extras(t_empresa *e);
