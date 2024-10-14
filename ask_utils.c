@@ -96,7 +96,10 @@ void	in_out_date(t_empresa *e)
 			day_p = date_id(date);
 			while (i < e->cantidad_empleados)
 			{
-				printf("[%d]%s >> %.2f to %.2f HsTotal >>%.2f\n", e->empleados[i].id, e->empleados[i].nombre, e->empleados[i].calendario->fecha[day_p].hora_entrada, e->empleados[i].calendario->fecha[day_p].hora_salida, e->empleados[i].calendario->fecha[day_p].hs_hechas);
+				if (e->empleados[i].calendario->fecha[day_p].split == false)
+					printf("[%d]%s >> %.2f to %.2f HsTotal >>%.2f\n", e->empleados[i].id, e->empleados[i].nombre, e->empleados[i].calendario->fecha[day_p].hora_entrada, e->empleados[i].calendario->fecha[day_p].hora_salida, e->empleados[i].calendario->fecha[day_p].hs_hechas);
+				if (e->empleados[i].calendario->fecha[day_p].split == true)
+					printf("[%d]%s >> %.2f to %.2f & %.2f to %.2f HsTotal >>%.2f\n", e->empleados[i].id, e->empleados[i].nombre, e->empleados[i].calendario->fecha[day_p].hora_entrada, e->empleados[i].calendario->fecha[day_p].hora_salida, e->empleados[i].calendario->fecha[day_p].hora_entrada2, e->empleados[i].calendario->fecha[day_p].hora_salida2, e->empleados[i].calendario->fecha[day_p].hs_hechas);
 			i++;
 			}
 			check = true;

@@ -19,48 +19,6 @@ void	consult_worker(t_empresa *e)
 		printf("\n");
 	}
 }
-void	consult_extra(t_empresa *e)
-{
-	bool	check;
-	int		result;
-	int		m;
-
-	check = false;
-	while (!check)
-	{
-		printf("EXTRAS BY_\n[1]WEEK\n[2]MONTH\n");
-		if ((result = scanf("%d", &m) == 1) && m == 1)
-		{
-			ask_by_week(e);
-			check = true;
-		}
-		else if (result == 1 && m == 2)
-		{
-			ask_by_month(e);
-			check = true;
-		}
-		else if (m == 0)
-		{
-			check = true;
-			module_3(e, 0);
-		}
-		else if (m == -1)
-		{
-			check = true;
-			principal(e, -1);
-		}
-		else if (result == 1)
-		{
-			printf(RED">_Wrong input, Write [1-2]\n"RST);
-			clear_input_buffer();
-		}
-		else if (result != 1)
-		{
-			printf(RED">_Wrong input, Write [1-2]\n"RST);
-			clear_input_buffer();
-		}
-	}
-}
 
 void	consult_in_out(t_empresa *e)
 {
@@ -132,4 +90,46 @@ void	consult_in_out(t_empresa *e)
 	}
 }
 
+void	consult_extra(t_empresa *e)
+{
+	bool	check;
+	int		result;
+	int		m;
+
+	check = false;
+	while (!check)
+	{
+		printf("EXTRAS BY_\n[1]WEEK\n[2]MONTH\n");
+		if ((result = scanf("%d", &m) == 1) && m == 1)
+		{
+			ask_by_week(e);
+			check = true;
+		}
+		else if (result == 1 && m == 2)
+		{
+			ask_by_month(e);
+			check = true;
+		}
+		else if (m == 0)
+		{
+			check = true;
+			module_3(e, 0);
+		}
+		else if (m == -1)
+		{
+			check = true;
+			principal(e, -1);
+		}
+		else if (result == 1)
+		{
+			printf(RED">_Wrong input, Write [1-2]\n"RST);
+			clear_input_buffer();
+		}
+		else if (result != 1)
+		{
+			printf(RED">_Wrong input, Write [1-2]\n"RST);
+			clear_input_buffer();
+		}
+	}
+}
 

@@ -3,9 +3,9 @@
 int	main(void)
 {
 	
-	presentacion_programa();
-	if (contrasena() == -1)
-		return -1;
+	//presentacion_programa();
+	//if (contrasena() == -1)
+	//	return -1;
 	t_empresa *e;
 
 	e = fc_malloc(sizeof(t_empresa));

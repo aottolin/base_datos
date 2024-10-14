@@ -28,7 +28,10 @@ typedef struct	s_fecha
 {
 	int	dia;
 	float	hora_entrada;
+	float	hora_entrada2;
 	float	hora_salida;
+	float	hora_salida2;
+	bool	split;
 	float	hs_hechas;
 }				t_fecha;
 
@@ -94,6 +97,7 @@ int		get_date_inverted(int posic);
 /*shedules utils*/
 void	contract(t_empleado *e);
 void	in_out(t_empleado *e, int day_posic);
+void	in_out_split(t_empleado *e, int day_posic);
 void	week_extras(t_empresa *e);
 /*ask_consult*/
 void	consult_worker(t_empresa *e);
