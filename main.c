@@ -30,7 +30,7 @@ void	principal(t_empresa *e, int value)
 		printf("	[1]INIT NEW WORKER\n");
 		printf("	[2]ADD SCHEDULES\n");
 		printf("	[3]ANSWER MODE\n");
-		printf("	[4]ADD CONTRACT HOURS\n");
+		printf("	[4]ADD WORKER DATA[CONTRACT HS-INIT DATE]\n");
 		printf("	[5]DELETE WORKER\n");
 		scanf("%d", &modulo);
 		if (modulo == 1 && value == 0)

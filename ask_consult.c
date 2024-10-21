@@ -13,7 +13,7 @@ void	consult_worker(t_empresa *e)
 		while (i < datos_cargados->cantidad_empleados)
 		{
 			read_employee = datos_cargados->empleados + i;
-			printf(" [%d]%s", read_employee->id, read_employee->nombre);
+			printf(" [%d]%s INIT DATE>04-05-2024\n", read_employee->id, read_employee->nombre);
 			i++;
 		}
 		printf("\n");
