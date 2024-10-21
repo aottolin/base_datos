@@ -182,10 +182,9 @@ void	in_out_split(t_empleado *e, int day_posic)
 			printf(RED"Wrong time [OUT2] input\n"RST);
 		clear_input_buffer();
 	}
-	
 	hs_hechas1 = out - in;	
 
-	if (out >= 7 && out <= 24)
+	if (out2 >= 7 && out2 <= 24)
 		hs_hechas2 = out2 - in2;
 	else
 	{

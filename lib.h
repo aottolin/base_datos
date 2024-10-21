@@ -4,6 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <termios.h>
+#include <ncurses.h>
 
 #define RST		"\033[0m"	 //reset to default color
 #define RED		"\033[31m" //Bold red
@@ -113,3 +114,4 @@ void	principal(t_empresa *e, int value);
 void	init_newcalendario(t_empresa *e);
 void	separe_new_weeks(t_empresa *e);
 void	week_extras(t_empresa *e);
+void	programa_logo(void);

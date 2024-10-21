@@ -6,6 +6,7 @@ int	main(void)
 	//presentacion_programa();
 	//if (contrasena() == -1)
 	//	return -1;
+	programa_logo();
 	t_empresa *e;
 
 	e = fc_malloc(sizeof(t_empresa));
@@ -20,11 +21,12 @@ void	principal(t_empresa *e, int value)
 	check = false;
 	if (value == -1)
 	{
-		printf(G"Exiting...\n"RST);
+		printf(G"EXITING...\n"RST);
 		return ;
 	}
 	while (!check)
 	{
+		printf("  [SELECT AN OPTION TO START]\n");
 		printf("	[1]INIT NEW WORKER\n");
 		printf("	[2]ADD SCHEDULES\n");
 		printf("	[3]ANSWER MODE\n");
@@ -60,7 +62,7 @@ void	principal(t_empresa *e, int value)
 		else if (modulo == -1)
 		{
 			check = true;
-			printf(G"Exiting...\n"RST);
+			printf(G"EXITING...\n"RST);
 			return ;
 		}
 		else

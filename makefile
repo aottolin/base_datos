@@ -20,6 +20,7 @@ SRCS = main.c \
 	   shedules.c \
 	   utils.c \
 	   shedules_utils.c \
+	   logo.c \
 	   treat_file.c
 
 CC = gcc
@@ -37,7 +38,7 @@ all: $(NAME)
 $(NAME): $(OBJS) lib.h Makefile
 	@echo "$(WHITE) $(NAME) $(RESET) $(GREEN) [OK] $(RESET)"
 	@echo "$(RED) -Todo ha sido compilado! $(RESET)"
-	@$(CC) $(OBJS) -o $(NAME)
+	@$(CC) $(OBJS) -o $(NAME) -lncurses
 
 clean:
 	@echo "$(RED) Eliminando .o  ... $(RESET)"
