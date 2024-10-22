@@ -88,4 +88,19 @@ void	presentacion_programa(void)
 	getchar();
 }
 
+void	get_bool(t_empresa *e)
+{
+	(void)e;
+	t_empresa *ee;
+	FILE *files = fopen(archivo, "r");
+	if (files)
+	{
+		fclose(files);
 
+		ee = read_file(e);
+		if (ee->cantidad_empleados > 0)
+			ee->first_time = true;
+		else
+			ee->first_time = false;
+	}
+}

@@ -59,6 +59,7 @@ typedef struct	s_empleado
 {
 	int				id;
 	char			nombre[10];
+	int				init_date;
 	t_calendario	*calendario;
 	t_empresa		*empresa;
 }				t_empleado;
@@ -66,6 +67,7 @@ typedef struct	s_empleado
 struct	s_empresa
 {
 	int			cantidad_empleados;
+	bool		first_time;
 	t_empleado	*empleados;
 };
 
@@ -89,6 +91,7 @@ int			check_func(t_empresa *e, float value, int m);
 void		imprimir_con_efecto(const char *texto, int color);
 void		presentacion_programa(void);
 int			contrasena(void);
+void	get_bool(t_empresa *e);
 /*shedules*/
 void	edit_shedules(t_empresa *e);
 /*init_calender*/
@@ -100,6 +103,8 @@ void	contract(t_empleado *e);
 void	in_out(t_empleado *e, int day_posic);
 void	in_out_split(t_empleado *e, int day_posic);
 void	week_extras(t_empresa *e);
+void	contract_hs(t_empresa *read_info);
+void	init_dates(t_empresa *read_info);
 /*ask_consult*/
 void	consult_worker(t_empresa *e);
 void	consult_in_out(t_empresa *e);

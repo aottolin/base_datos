@@ -21,8 +21,9 @@ void	principal(t_empresa *e, int value)
 	check = false;
 	if (value == -1)
 	{
-		printf(G"EXITING...\n"RST);
-		return ;
+		printf(RED"EXITING...\n"RST);
+		write_file(e, 2);
+		exit(0);
 	}
 	while (!check)
 	{
@@ -40,30 +41,57 @@ void	principal(t_empresa *e, int value)
 		}
 		else if (modulo == 2 && value == 0)
 		{
-			modules(e, 2);
+			get_bool(e);
+			if (e->first_time == false)
+			{
+				printf(RED"[ERROR] >_First time INIT first _ You can't add SCHEDULES if the system has 0 workers added\n"RST);
+				principal(e, 0);
+			}
+			else
+				modules(e, 2);
 			check = true;
 		}
-
 		else if (modulo == 3 && value == 0)
 		{
-			modules(e, 3);
+			get_bool(e);
+			if (e->first_time == false)
+			{
+				printf(RED"[ERROR] >_First time INIT first _ You can't consult if the system has 0 workers added\n"RST);
+				principal(e, 0);
+			}
+			else
+				modules(e, 3);
 			check = true;	
 		}
 		else if (modulo == 4 && value == 0)
 		{
-			modules(e, 4);
+			get_bool(e);
+			if (e->first_time == false)
+			{
+				printf(RED"[ERROR] >_First time INIT first _ You can't consult if the system has 0 workers added\n"RST);
+				principal(e, 0);
+			}
+			else
+				modules(e, 4);
 			check = true;	
 		}
 		else if (modulo == 5 && value == 0)
 		{
-			modules(e, 5);
+			get_bool(e);
+			if (e->first_time == false)
+			{
+				printf(RED"[ERROR] >_First time INIT first _ You can't consult if the system has 0 workers added\n"RST);
+				principal(e, 0);
+			}
+			else
+				modules(e, 5);
 			check = true;
 		}
 		else if (modulo == -1)
 		{
 			check = true;
-			printf(G"EXITING...\n"RST);
-			return ;
+			printf(RED"EXITING...\n"RST);
+			exit(0);
 		}
 		else
 		{

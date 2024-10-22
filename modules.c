@@ -59,14 +59,32 @@ void	modules(t_empresa *e, int modulee)
 		
 			if (value == 1)
 			{
-				init_empleados(e);
-				write_file(e, 2);
+				get_bool(e);
+				if (e->first_time == true)
+				{
+					printf(RED"[ERROR] >_The program is already INIT _ You can't do FIRST INIT again\n"RST);
+					principal(e, 0);
+				}
+				else
+				{
+					init_empleados(e);
+					write_file(e, 2);
+				}
 				check = true;
 			}
 			else if (value == 2)
 			{
-				init_new_employeed(e);
-				write_file(e, 2);
+				get_bool(e);
+				if (e->first_time == false)
+				{
+					printf(RED"[ERROR] >_First time INIT first _ You can't add new WORKERS if the system has 0 workers\n"RST);
+					principal(e, 0);
+				}
+				else
+				{
+					init_new_employeed(e);
+					write_file(e, 2);
+				}
 				check = true;
 			}
 			else if (value == 0)
@@ -105,40 +123,42 @@ void	modules(t_empresa *e, int modulee)
 	if (modulee == 4)
 	{
 		t_empresa	*read_info;
-		t_empleado	*edit_e;
 		bool	check;
-		int		id_e;
-		int			i;
 		int	result;
-		bool	ok;
-		
-		ok = false;
+		int	s;
+
 		read_info = read_file(e);
 		check = false;
-		i = 0;
 		if (read_info != NULL)
 		{
-			printf("ADD CONTRACT HOURS TO_");
-			while (i < read_info->cantidad_empleados)
-			{
-				edit_e = read_info->empleados + i;
-				printf(" [%d]%s", edit_e->id, edit_e->nombre);
-				i++;
-			}
-			printf("\n");
-			i = 0;
 			while (!check)
 			{
-				if ((result = scanf("%d", &id_e) == 1) && check_func(read_info, id_e, 1) == 0 && check_func(read_info, id_e, 4) == 0)
+				printf("[1]CONTRACT HS - [2]INIT DATE\n");
+				if ((result = scanf("%d", &s)) == 1 && s == 1 && check_func(read_info, s, 1) == 0)
+					contract_hs(read_info);
+				else if (result == 1 && s == 2 && check_func(read_info, s, 1) == 0)
+					init_dates(read_info);
+				else if (s == 0)
 				{
-					while (i < read_info->cantidad_empleados && ok == false)
-					{
-						edit_e = e->empleados + i;
-						if (edit_e->id != id_e)
-							i++;
-						else
-							contract(edit_e);
-					}					
+					check = true;
+					principal(read_info, 0);
+					return ;
+				}
+				else if (s == -1)
+				{
+					check = true;
+					principal(read_info, -1);
+					return ;
+				}
+				else if (result != 1)
+				{
+					printf(RED"Error input: Write[1]-[2]\n"RST);
+					clear_input_buffer();
+				}
+				else
+				{
+					printf(RED"Error input: Write[1]-[2]\n"RST);
+					clear_input_buffer();
 				}
 			}
 			write_file(e, 2);

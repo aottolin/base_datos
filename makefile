@@ -8,7 +8,7 @@ CYAN = \033[36m
 WHITE = \033[37m
 BOLD = \033[1m
 
-NAME = Data_base2024
+NAME = Workers_2024
 SRCS = main.c \
 	   ask_consult.c \
 	   ask_utils.c \

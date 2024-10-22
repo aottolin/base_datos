@@ -1,5 +1,96 @@
 #include "lib.h"
 
+void	init_dates_utils(t_empleado *e)
+{
+	bool	check;
+	int		in_d;
+	int		result;
+	t_empresa *empresas;
+
+	empresas = e->empresa;
+	check = false;
+	while (!check)
+	{
+		printf("INIT DATE_\n");
+		if ((result = scanf("%d", &in_d) == 1) && check_date(in_d) == 0)
+		{
+			e->init_date = in_d;	
+			check = true;
+		}
+		else if (in_d == 0)
+		{
+			check = true;
+			principal(empresas, 0);
+		}
+		else if (in_d == -1)
+		{
+			check = true;
+			principal(empresas, -1);
+		}
+		else
+		{
+			printf(RED"Error input\n"RST);
+			clear_input_buffer();
+		}
+	}
+}
+
+void	init_dates(t_empresa *read_info)
+{
+	int			i;
+	t_empleado	*edit_e;
+	bool		check;
+	int			id_e;
+	bool		ok;
+	int			result;
+
+	i = 0;
+	printf("ADD INIT DATE TO_\n");
+	while (i < read_info->cantidad_empleados)
+	{
+		edit_e = read_info->empleados + i;
+		printf(" [%d]%s", edit_e->id, edit_e->nombre);
+		i++;
+	}
+	printf("\n");
+	i = 0;
+	ok = false;
+	check = false;
+	while (!check)
+	{
+		if ((result = scanf("%d", &id_e) == 1) && id_e != -1 && id_e != 0 && check_func(read_info, id_e, 1) == 0 && check_func(read_info, id_e, 4) == 0)
+		{
+			while (i < read_info->cantidad_empleados && ok == false)
+			{
+				edit_e = read_info->empleados + i;
+				if (edit_e->id != id_e)
+					i++;
+				else
+				{
+					init_dates_utils(edit_e);
+					check = true;
+					ok = true;
+				}
+			}				
+		}
+		else if (id_e == 0)
+		{
+			check = true;
+			principal(read_info, 0);
+		}
+		else if (id_e == -1)
+		{
+			check = true;
+			principal(read_info, -1);
+		}
+		else
+		{
+			printf(RED"Error input\n"RST);
+			clear_input_buffer();
+		}
+	}
+}
+
 void	contract(t_empleado *e)
 {
 	bool	ok;
@@ -43,6 +134,44 @@ void	contract(t_empleado *e)
 			}
 		}
 		check = true;
+	}
+}
+
+void	contract_hs(t_empresa *read_info)
+{
+	t_empleado	*edit_e;
+	bool	check;
+	int		id_e;
+	int			i;
+	int	result;
+	bool	ok;
+
+	i = 0;
+	check = false;
+	ok = false;
+	printf("ADD CONTRACT HOURS TO_");
+	while (i < read_info->cantidad_empleados)
+	{
+		edit_e = read_info->empleados + i;
+		printf(" [%d]%s", edit_e->id, edit_e->nombre);
+		i++;
+	}
+	printf("\n");
+	i = 0;
+
+	while (!check)
+	{
+		if ((result = scanf("%d", &id_e) == 1) && check_func(read_info, id_e, 1) == 0 && check_func(read_info, id_e, 4) == 0)
+		{
+			while (i < read_info->cantidad_empleados && ok == false)
+			{
+				edit_e = read_info->empleados + i;
+				if (edit_e->id != id_e)
+					i++;
+				else
+					contract(edit_e);
+			}					
+		}
 	}
 }
 

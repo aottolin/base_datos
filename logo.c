@@ -18,9 +18,9 @@ void	programa_logo(void)
 
 	printf(RED"Created by A.T.O\n"RST);
 	printf(RED"Version: 1.0.1\n"RST);
+    printf(RED"REPORT PROBLEMS >> alexistottolini@hotmail.com\n\n"RST);
 	printf(RED"System time: %s\n\n"RST, buffer);
     printf("USER GUIDE: "RST);
     printf("[0] GO-BACK "RST);
     printf("[-1] EXIT PROGRAM\n"RST);
-    printf("REPORT PROBLEMS >> alexistottolini@hotmail.com\n\n"RST);
 }

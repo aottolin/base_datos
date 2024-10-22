@@ -72,6 +72,6 @@ t_empresa* read_file(t_empresa *e)
 		i++;
 	}
 	fclose(file);
-	printf(G">_File read successfully.\n"RST);
+	//printf(G">_File read successfully.\n"RST);
 	return (e);
 }
